@@ -56,6 +56,7 @@ class AwkwardPostureCrudController extends CrudController
     protected function setupCreateOperation()
     {
         CRUD::setValidation(AwkwardPostureRequest::class);
+        $this->crud->setCreateView('vendor.backpack.crud.awkward_posture.create');
         CRUD::addField([
             'name' => 'title1',
             'label' => 'Body Part',

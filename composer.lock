@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c797768f774aaa86b8d9ffd4e41c4024",
+    "content-hash": "494505c3bf7c6e068e844aab420f3a38",
     "packages": [
         {
             "name": "backpack/basset",
@@ -174,75 +174,7 @@
             },
             "time": "2025-04-28T09:44:27+00:00"
         },
-        {
-            "name": "backpack/editable-columns",
-            "version": "3.0.11",
-            "source": {
-                "type": "git",
-                "url": "git@github.com:Laravel-Backpack/editable-columns.git",
-                "reference": "8adddb801c15871abc466bc59dbc2234664c8fab"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://repo.backpackforlaravel.com/dist/backpack/editable-columns/backpack-editable-columns-8adddb801c15871abc466bc59dbc2234664c8fab-zip-1f6c5d.zip",
-                "reference": "8adddb801c15871abc466bc59dbc2234664c8fab",
-                "shasum": "611325b066ce5c76e340bd42619dca972fb3fe4d"
-            },
-            "require": {
-                "backpack/crud": "^6.0"
-            },
-            "require-dev": {
-                "orchestra/testbench": "~5|~6",
-                "phpunit/phpunit": "~9.0"
-            },
-            "type": "library",
-            "extra": {
-                "laravel": {
-                    "providers": [
-                        "Backpack\\EditableColumns\\AddonServiceProvider"
-                    ]
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Backpack\\EditableColumns\\": "src/"
-                }
-            },
-            "autoload-dev": {
-                "psr-4": {
-                    "Backpack\\EditableColumns\\Tests\\": "tests"
-                }
-            },
-            "scripts": {
-                "test": [
-                    "vendor/bin/phpunit --testdox"
-                ]
-            },
-            "license": [
-                "EULA"
-            ],
-            "authors": [
-                {
-                    "name": "Cristian Tabacitu",
-                    "email": "cristian.tabacitu@backpackforlaravel.com",
-                    "homepage": "https://backpackforlaravel.com"
-                }
-            ],
-            "description": "Add input columns to your tables, to let your admins edit values right then and there.",
-            "homepage": "https://github.com/backpack/editable-columns",
-            "keywords": [
-                "Backpack",
-                "Backpack Addon",
-                "Backpack for Laravel",
-                "EditableColumns",
-                "Laravel"
-            ],
-            "support": {
-                "source": "https://github.com/Laravel-Backpack/editable-columns/tree/3.0.11",
-                "issues": "https://github.com/Laravel-Backpack/editable-columns/issues"
-            },
-            "time": "2024-11-22T14:47:51+00:00"
-        },
+    
         {
             "name": "backpack/theme-tabler",
             "version": "1.2.18",
@@ -1583,16 +1515,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v12.10.2",
+            "version": "v12.11.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "0f123cc857bc177abe4d417448d4f7164f71802a"
+                "reference": "050b2dfeaf6fff9e08e84b355822636492fb45f4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/0f123cc857bc177abe4d417448d4f7164f71802a",
-                "reference": "0f123cc857bc177abe4d417448d4f7164f71802a",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/050b2dfeaf6fff9e08e84b355822636492fb45f4",
+                "reference": "050b2dfeaf6fff9e08e84b355822636492fb45f4",
                 "shasum": ""
             },
             "require": {
@@ -1794,7 +1726,7 @@
                 "issues": "https://github.com/laravel/framework/issues",
                 "source": "https://github.com/laravel/framework"
             },
-            "time": "2025-04-24T14:11:20+00:00"
+            "time": "2025-04-29T20:18:16+00:00"
         },
         {
             "name": "laravel/prompts",
@@ -6432,90 +6364,7 @@
         }
     ],
     "packages-dev": [
-        {
-            "name": "backpack/devtools",
-            "version": "3.1.7",
-            "source": {
-                "type": "git",
-                "url": "git@github.com:Laravel-Backpack/DevTools.git",
-                "reference": "e460cbbce67108adb83bde497dbcbd423c637743"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://repo.backpackforlaravel.com/dist/backpack/devtools/backpack-devtools-e460cbbce67108adb83bde497dbcbd423c637743-zip-b74eb6.zip",
-                "reference": "e460cbbce67108adb83bde497dbcbd423c637743",
-                "shasum": "68e0c140127795f8beaf7b289edb9bd0827f669b"
-            },
-            "require": {
-                "backpack/crud": "^6.7.1",
-                "backpack/generators": "^4.0",
-                "calebporzio/sushi": "^2.3",
-                "ext-pdo_sqlite": "*",
-                "laravel-shift/blueprint": "^2.7",
-                "livewire/livewire": "^3.0"
-            },
-            "require-dev": {
-                "friendsofphp/php-cs-fixer": "^3.0",
-                "mockery/mockery": "^1.1",
-                "orchestra/testbench": "^8.0",
-                "phpunit/phpunit": "^10.0",
-                "sempro/phpunit-pretty-print": "^1.0"
-            },
-            "type": "library",
-            "extra": {
-                "laravel": {
-                    "providers": [
-                        "Backpack\\DevTools\\DevToolsServiceProvider"
-                    ]
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Backpack\\DevTools\\": "src/"
-                }
-            },
-            "autoload-dev": {
-                "psr-4": {
-                    "Tests\\": "tests/"
-                }
-            },
-            "scripts": {
-                "test": [
-                    "vendor/bin/phpunit --testdox"
-                ],
-                "test-failing": [
-                    "vendor/bin/phpunit --order-by=defects --stop-on-failure"
-                ]
-            },
-            "license": [
-                "proprietary"
-            ],
-            "authors": [
-                {
-                    "name": "Cristian Tabacitu",
-                    "email": "tabacitu@backpackforlaravel.com",
-                    "homepage": "https://backpackforlaravel.com",
-                    "role": "Creator & Maintainer"
-                }
-            ],
-            "description": "An admin UI for generating migrations, models and CRUDs",
-            "homepage": "https://github.com/laravel-backpack/devtools",
-            "keywords": [
-                "Backpack for Laravel",
-                "DevTools",
-                "Generate Migrations",
-                "Generate Models",
-                "Generate Relationships",
-                "Generators",
-                "Laravel",
-                "dev"
-            ],
-            "support": {
-                "source": "https://github.com/Laravel-Backpack/DevTools/tree/3.1.7",
-                "issues": "https://github.com/Laravel-Backpack/DevTools/issues"
-            },
-            "time": "2024-10-17T14:19:08+00:00"
-        },
+       
         {
             "name": "backpack/generators",
             "version": "v4.0.7",
@@ -6772,20 +6621,20 @@
         },
         {
             "name": "hamcrest/hamcrest-php",
-            "version": "v2.0.1",
+            "version": "v2.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/hamcrest/hamcrest-php.git",
-                "reference": "8c3d0a3f6af734494ad8f6fbbee0ba92422859f3"
+                "reference": "99ec86beb7da3604d57cd3ca3699d2853f53018d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hamcrest/hamcrest-php/zipball/8c3d0a3f6af734494ad8f6fbbee0ba92422859f3",
-                "reference": "8c3d0a3f6af734494ad8f6fbbee0ba92422859f3",
+                "url": "https://api.github.com/repos/hamcrest/hamcrest-php/zipball/99ec86beb7da3604d57cd3ca3699d2853f53018d",
+                "reference": "99ec86beb7da3604d57cd3ca3699d2853f53018d",
                 "shasum": ""
             },
             "require": {
-                "php": "^5.3|^7.0|^8.0"
+                "php": "^7.4|^8.0"
             },
             "replace": {
                 "cordoval/hamcrest-php": "*",
@@ -6793,8 +6642,8 @@
                 "kodova/hamcrest-php": "*"
             },
             "require-dev": {
-                "phpunit/php-file-iterator": "^1.4 || ^2.0",
-                "phpunit/phpunit": "^4.8.36 || ^5.7 || ^6.5 || ^7.0"
+                "phpunit/php-file-iterator": "^1.4 || ^2.0 || ^3.0",
+                "phpunit/phpunit": "^4.8.36 || ^5.7 || ^6.5 || ^7.0 || ^8.0 || ^9.0"
             },
             "type": "library",
             "extra": {
@@ -6817,9 +6666,9 @@
             ],
             "support": {
                 "issues": "https://github.com/hamcrest/hamcrest-php/issues",
-                "source": "https://github.com/hamcrest/hamcrest-php/tree/v2.0.1"
+                "source": "https://github.com/hamcrest/hamcrest-php/tree/v2.1.0"
             },
-            "time": "2020-07-09T08:09:16+00:00"
+            "time": "2025-04-29T18:09:42+00:00"
         },
         {
             "name": "laravel-shift/blueprint",
@@ -7067,16 +6916,16 @@
         },
         {
             "name": "laravel/sail",
-            "version": "v1.41.1",
+            "version": "v1.42.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/sail.git",
-                "reference": "e5692510f1ef8e0f5096cde2b885d558f8d86592"
+                "reference": "2edaaf77f3c07a4099965bb3d7dfee16e801c0f6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/sail/zipball/e5692510f1ef8e0f5096cde2b885d558f8d86592",
-                "reference": "e5692510f1ef8e0f5096cde2b885d558f8d86592",
+                "url": "https://api.github.com/repos/laravel/sail/zipball/2edaaf77f3c07a4099965bb3d7dfee16e801c0f6",
+                "reference": "2edaaf77f3c07a4099965bb3d7dfee16e801c0f6",
                 "shasum": ""
             },
             "require": {
@@ -7126,7 +6975,7 @@
                 "issues": "https://github.com/laravel/sail/issues",
                 "source": "https://github.com/laravel/sail"
             },
-            "time": "2025-04-22T13:39:39+00:00"
+            "time": "2025-04-29T14:26:46+00:00"
         },
         {
             "name": "livewire/livewire",
@@ -9099,12 +8948,12 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {},
+    "stability-flags": [],
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
         "php": "^8.2"
     },
-    "platform-dev": {},
+    "platform-dev": [],
     "plugin-api-version": "2.6.0"
 }

@@ -27,6 +27,9 @@ Route::group([
     Route::crud('ventilation', 'VentilationCrudController');
     Route::crud('noise', 'NoiseCrudController');
     Route::crud('musculoskeletal', 'MusculoskeletalCrudController');
+    Route::get('test-backpack-view', function () {
+        return view('backpack::layout');
+    });
 }); // this should be the absolute last line of this file
 
 /**
