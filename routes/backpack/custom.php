@@ -16,6 +16,17 @@ Route::group([
     ),
     'namespace' => 'App\Http\Controllers\Admin',
 ], function () { // custom admin routes
+    Route::crud('project', 'ProjectCrudController');
+    Route::crud('awkward-posture', 'AwkwardPostureCrudController');
+    Route::crud('static-sustained-work-posture', 'StaticSustainedWorkPostureCrudController');
+    Route::crud('forceful-exertion', 'ForcefulExertionCrudController');
+    Route::crud('repetitive-motion', 'RepetitiveMotionCrudController');
+    Route::crud('vibration', 'VibrationCrudController');
+    Route::crud('lighting', 'LightingCrudController');
+    Route::crud('temperature', 'TemperatureCrudController');
+    Route::crud('ventilation', 'VentilationCrudController');
+    Route::crud('noise', 'NoiseCrudController');
+    Route::crud('musculoskeletal', 'MusculoskeletalCrudController');
 }); // this should be the absolute last line of this file
 
 /**
