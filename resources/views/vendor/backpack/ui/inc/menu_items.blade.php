@@ -12,3 +12,5 @@
 <x-backpack::menu-item title="Ventilations" icon="la la-question" :link="backpack_url('ventilation')" />
 <x-backpack::menu-item title="Noises" icon="la la-question" :link="backpack_url('noise')" />
 <x-backpack::menu-item title="Musculoskeletals" icon="la la-question" :link="backpack_url('musculoskeletal')" />
+
+<x-backpack::menu-item title="Assessments" icon="la la-question" :link="backpack_url('assessment')" />

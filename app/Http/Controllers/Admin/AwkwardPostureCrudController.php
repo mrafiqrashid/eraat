@@ -93,6 +93,12 @@ class AwkwardPostureCrudController extends CrudController
             ]
         ]);
 
+        $this->crud->addField([
+            'name' => 'project_id',
+            'type' => 'number',
+            'default' => request()->get('project_id'),
+        ]);
+
         CRUD::setFromDb(); // set fields from db columns.
 
         /**

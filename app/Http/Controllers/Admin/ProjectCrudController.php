@@ -40,6 +40,7 @@ class ProjectCrudController extends CrudController
     protected function setupListOperation()
     {
         CRUD::setFromDb(); // set columns from db columns.
+        $this->crud->addButtonFromView('line', 'goTo', 'goTo', 'beginning');
 
         /**
          * Columns can be defined using the fluent syntax:

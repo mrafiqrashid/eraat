@@ -30,6 +30,7 @@ Route::group([
     Route::get('test-backpack-view', function () {
         return view('backpack::layout');
     });
+    Route::crud('assessment', 'AssessmentCrudController');
 }); // this should be the absolute last line of this file
 
 /**
