@@ -1023,7 +1023,7 @@ class AssessmentCrudController extends CrudController
             'type' => 'number',
             'default' => 0,
             'attributes' => [
-                'min' => 1,
+                'min' => 0,
             ],
             'wrapper' => [
                 'class' => 'form-group d-flex align-self-start col-md-4'
@@ -1059,7 +1059,7 @@ class AssessmentCrudController extends CrudController
             'type' => 'number',
             'default' => 0,
             'attributes' => [
-                'min' => 1,
+                'min' => 0,
             ],
             'wrapper' => [
                 'class' => 'form-group d-flex align-self-start col-md-4'
@@ -1094,7 +1094,7 @@ class AssessmentCrudController extends CrudController
             'type' => 'number',
             'default' => 0,
             'attributes' => [
-                'min' => 1,
+                'min' => 0,
             ],
             'wrapper' => [
                 'class' => 'form-group d-flex align-self-start col-md-4'
@@ -1132,7 +1132,7 @@ class AssessmentCrudController extends CrudController
             'type' => 'number',
             'default' => 0,
             'attributes' => [
-                'min' => 1,
+                'min' => 0,
             ],
             'wrapper' => [
                 'class' => 'form-group d-flex align-self-start col-md-4'
@@ -1166,7 +1166,7 @@ class AssessmentCrudController extends CrudController
             'type' => 'number',
             'default' => 0,
             'attributes' => [
-                'min' => 1,
+                'min' => 0,
             ],
             'wrapper' => [
                 'class' => 'form-group d-flex align-self-start col-md-4'
@@ -1469,7 +1469,7 @@ class AssessmentCrudController extends CrudController
 
 
 
-
+        // title vibration 
         CRUD::addField([
             'name'  => 'vibration_section',
             'type'  => 'custom_html',
@@ -1484,7 +1484,7 @@ class AssessmentCrudController extends CrudController
 
 
         CRUD::addField([
-            'name'  => 'repetitive_motion_header1',
+            'name'  => 'vibration_header1',
             'type'  => 'custom_html',
             'value' => '<h3 class="font-weight-bold mb-3">Body Part</h3>',
             'wrapper' => [
@@ -1492,7 +1492,7 @@ class AssessmentCrudController extends CrudController
             ]
         ]);
         CRUD::addField([
-            'name' => 'repetitive_motion_header2',
+            'name' => 'vibration_header2',
             'type'  => 'custom_html',
             'value' => '<h3 class="font-weight-bold mb-4">Physical Risk Factor</h3>',
             'wrapper' => [
@@ -1500,7 +1500,7 @@ class AssessmentCrudController extends CrudController
             ]
         ]);
         CRUD::addField([
-            'name'  => 'repetitive_motion_header3',
+            'name'  => 'vibration_header3',
             'type'  => 'custom_html',
             'value' => '<h3 class="font-weight-bold mb-3">Maximum Exposure Duration</h3>',
             'wrapper' => [
@@ -1508,7 +1508,7 @@ class AssessmentCrudController extends CrudController
             ]
         ]);
         CRUD::addField([
-            'name'  => 'repetitive_motion_header4',
+            'name'  => 'vibration_header4',
             'type'  => 'custom_html',
             'value' => '<h3 class="font-weight-bold mb-2">Please Choose (Yes/No)</h3>',
             'wrapper' => [
@@ -1521,32 +1521,32 @@ class AssessmentCrudController extends CrudController
 
 
         CRUD::addField([
-            'name'  => 'repetitive_motion_question_18a',
+            'name'  => 'repetitive_motion_question_23a',
             'type'  => 'custom_html',
-            'value' => '<p class="font-weight-bold mb-2">Neck, shoulders, elboow, wrists, hands, knee</p>',
+            'value' => '<p class="font-weight-bold mb-2">Hand-Arm (segmental vibration)</p>',
             'wrapper' => [
                 'class' => 'form-group col-md-3'
             ]
         ]);
         CRUD::addField([
-            'name' => 'repetitive_motion_question_18b',
+            'name' => 'repetitive_motion_question_23b',
             'type'  => 'custom_html',
-            'value' => '<p class="font-weight-bold mb-2">Work invloving repetitive sequence of movement more than twice per minute</p>',
+            'value' => '<p class="font-weight-bold mb-2">Work using power tools (ie: battery powered/ electical pneumatic/ hydraulic) <span class="text-decoration-underline">without</span> PPE*</p>',
             'wrapper' => [
                 'class' => 'form-group col-md-4'
             ]
         ]);
         CRUD::addField([
-            'name'  => 'repetitive_motion_question_18c',
+            'name'  => 'repetitive_motion_question_23c',
             'type'  => 'custom_html',
-            'value' => '<p class="font-weight-bold mb-2">More than 3 hours on a "normal" workday OR More than 1 hour continously without a break</p>',
+            'value' => '<p class="font-weight-bold mb-2">More than 50 minutes in an hour</p>',
             'wrapper' => [
                 'class' => 'form-group col-md-3'
             ]
         ]);
 
         CRUD::addField([
-            'name'  => 'question_18',
+            'name'  => 'question_23',
             'label' => false,
             'type'        => 'select_from_array',
             'options'     => [0 => 'No', 1 => 'Yes'],
@@ -1561,7 +1561,7 @@ class AssessmentCrudController extends CrudController
 
 
         CRUD::addField([
-            'name'  => 'repetitive_motion_question_19a',
+            'name'  => 'repetitive_motion_question_24a',
             'type'  => 'custom_html',
             'value' => '<p class="font-weight-bold mb-2"></p>',
             'wrapper' => [
@@ -1569,24 +1569,24 @@ class AssessmentCrudController extends CrudController
             ]
         ]);
         CRUD::addField([
-            'name' => 'repetitive_motion_question_19b',
+            'name' => 'repetitive_motion_question_24b',
             'type'  => 'custom_html',
-            'value' => '<p class="font-weight-bold mb-2">Work invloving intensive use of the fingers, hands or wrists or work involving intensive data entry (key-in)</p>',
+            'value' => '<p class="font-weight-bold mb-2">Work using power tools (ie: battery powered/ electrical pneumatic/ hydraulic) <span class="text-decoration-underline">with</span> PPE*</p>',
             'wrapper' => [
                 'class' => 'form-group col-md-4'
             ]
         ]);
         CRUD::addField([
-            'name'  => 'repetitive_motion_question_19c',
+            'name'  => 'repetitive_motion_question_24c',
             'type'  => 'custom_html',
-            'value' => '<p class="font-weight-bold mb-2">More than 3 hours on a "normal" workday OR More than 1 hour continously without a break</p>',
+            'value' => '<p class="font-weight-bold mb-2">More than 5 hours in 8 hours shift work</p>',
             'wrapper' => [
                 'class' => 'form-group col-md-3'
             ]
         ]);
 
         CRUD::addField([
-            'name'  => 'question_19',
+            'name'  => 'question_24',
             'label' => false,
             'type'        => 'select_from_array',
             'options'     => [0 => 'No', 1 => 'Yes'],
@@ -1605,7 +1605,51 @@ class AssessmentCrudController extends CrudController
 
 
         CRUD::addField([
-            'name'  => 'repetitive_motion_question_20a',
+            'name'  => 'repetitive_motion_question_25a',
+            'type'  => 'custom_html',
+            'value' => '<p class="font-weight-bold mb-2">Whole body vibration</p>',
+            'wrapper' => [
+                'class' => 'form-group col-md-3'
+            ]
+        ]);
+        CRUD::addField([
+            'name' => 'repetitive_motion_question_25b',
+            'type'  => 'custom_html',
+            'value' => '<p class="font-weight-bold mb-2">Work invloving exposure to whole body vibration</p>',
+            'wrapper' => [
+                'class' => 'form-group col-md-4'
+            ]
+        ]);
+        CRUD::addField([
+            'name'  => 'repetitive_motion_question_25c',
+            'type'  => 'custom_html',
+            'value' => '<p class="font-weight-bold mb-2">More than 5 hours in 8 hours shift work</p>',
+            'wrapper' => [
+                'class' => 'form-group col-md-3'
+            ]
+        ]);
+
+        CRUD::addField([
+            'name'  => 'question_25',
+            'label' => false,
+            'type'        => 'select_from_array',
+            'options'     => [0 => 'No', 1 => 'Yes'],
+            'allows_null' => false,
+            'default'     => 0,
+            'wrapper' => [
+                'class' => 'form-group d-flex align-self-start col-md-2'
+            ]
+        ]);
+
+
+
+
+
+
+
+
+        CRUD::addField([
+            'name'  => 'repetitive_motion_question_26a',
             'type'  => 'custom_html',
             'value' => '<p class="font-weight-bold mb-2"></p>',
             'wrapper' => [
@@ -1613,24 +1657,145 @@ class AssessmentCrudController extends CrudController
             ]
         ]);
         CRUD::addField([
-            'name' => 'repetitive_motion_question_20b',
+            'name' => 'repetitive_motion_question_26b',
             'type'  => 'custom_html',
-            'value' => '<p class="font-weight-bold mb-2">Work invloving repetitive shoulder/arm movement with some pauses OR continously shoulder/ arm movement</p>',
+            'value' => '<p class="font-weight-bold mb-2">Work involving exposure to whole body vibration combined employee complaint of excessive body shaking</p>',
             'wrapper' => [
                 'class' => 'form-group col-md-4'
             ]
         ]);
         CRUD::addField([
-            'name'  => 'repetitive_motion_question_20c',
+            'name'  => 'repetitive_motion_question_26c',
             'type'  => 'custom_html',
-            'value' => '<p class="font-weight-bold mb-2">More than 3 hours on a "normal" workday OR More than 1 hour continously without a break</p>',
+            'value' => '<p class="font-weight-bold mb-2">More than 3 hours in 8 hours shift work</p>',
             'wrapper' => [
                 'class' => 'form-group col-md-3'
             ]
         ]);
 
         CRUD::addField([
-            'name'  => 'question_20',
+            'name'  => 'question_26',
+            'label' => false,
+            'type'        => 'select_from_array',
+            'options'     => [0 => 'No', 1 => 'Yes'],
+            'allows_null' => false,
+            'default'     => 0,
+            'wrapper' => [
+                'class' => 'form-group d-flex align-self-start col-md-2'
+            ]
+        ]);
+
+
+
+
+        // title Lighting
+        CRUD::addField([
+            'name'  => 'lighting_section',
+            'type'  => 'custom_html',
+            'value' => '<h2 class="font-weight-bold">Section: Lighting</h2>',
+            'wrapper' => [
+                'class' => 'form-group col-md-12  pt-5'
+            ]
+        ]);
+
+
+
+
+
+
+        CRUD::addField([
+            'name'  => 'lighting_header1',
+            'type'  => 'custom_html',
+            'value' => '<h3 class="font-weight-bold mb-10">Physical Risk Factor</h3>',
+            'wrapper' => [
+                'class' => 'form-group col-md-10'
+            ]
+        ]);
+
+        CRUD::addField([
+            'name'  => 'lighting_header2',
+            'type'  => 'custom_html',
+            'value' => '<h3 class="font-weight-bold mb-2">Please Choose (Yes/No)</h3>',
+            'wrapper' => [
+                'class' => 'form-group col-md-2'
+            ]
+        ]);
+
+
+
+
+
+
+
+
+
+
+        CRUD::addField([
+            'name'  => 'lighting_question_27a',
+            'type'  => 'custom_html',
+            'value' => '<p class="font-weight-bold mb-10">Inadequate lighting</p>',
+            'wrapper' => [
+                'class' => 'form-group col-md-10'
+            ]
+        ]);
+
+
+        CRUD::addField([
+            'name'  => 'question_27',
+            'label' => false,
+            'type'        => 'select_from_array',
+            'options'     => [0 => 'No', 1 => 'Yes'],
+            'allows_null' => false,
+            'default'     => 0,
+            'wrapper' => [
+                'class' => 'form-group d-flex align-self-start col-md-2'
+            ]
+        ]);
+
+
+
+
+        // title temperature
+        CRUD::addField([
+            'name'  => 'temperature_section',
+            'type'  => 'custom_html',
+            'value' => '<h2 class="font-weight-bold">Section: Temperature</h2>',
+            'wrapper' => [
+                'class' => 'form-group col-md-12  pt-5'
+            ]
+        ]);
+
+        CRUD::addField([
+            'name'  => 'temperature_header1',
+            'type'  => 'custom_html',
+            'value' => '<h3 class="font-weight-bold mb-10">Physical Risk Factor</h3>',
+            'wrapper' => [
+                'class' => 'form-group col-md-10'
+            ]
+        ]);
+
+        CRUD::addField([
+            'name'  => 'temperature_header2',
+            'type'  => 'custom_html',
+            'value' => '<h3 class="font-weight-bold mb-2">Please Choose (Yes/No)</h3>',
+            'wrapper' => [
+                'class' => 'form-group col-md-2'
+            ]
+        ]);
+
+
+        CRUD::addField([
+            'name'  => 'temperature_question_28a',
+            'type'  => 'custom_html',
+            'value' => '<p class="font-weight-bold mb-10">Extreme temperature (hot/ cold)</p>',
+            'wrapper' => [
+                'class' => 'form-group col-md-10'
+            ]
+        ]);
+
+
+        CRUD::addField([
+            'name'  => 'question_28',
             'label' => false,
             'type'        => 'select_from_array',
             'options'     => [0 => 'No', 1 => 'Yes'],
@@ -1648,33 +1813,49 @@ class AssessmentCrudController extends CrudController
 
 
 
+
+
+        // title ventilation
         CRUD::addField([
-            'name'  => 'repetitive_motion_question_21a',
+            'name'  => 'ventilation_section',
             'type'  => 'custom_html',
-            'value' => '<p class="font-weight-bold mb-2"></p>',
+            'value' => '<h2 class="font-weight-bold">Section: Ventilation</h2>',
             'wrapper' => [
-                'class' => 'form-group col-md-3'
-            ]
-        ]);
-        CRUD::addField([
-            'name' => 'repetitive_motion_question_21b',
-            'type'  => 'custom_html',
-            'value' => '<p class="font-weight-bold mb-2">Work using the heel/ base of palm as a "hammer" more than once per minute</p>',
-            'wrapper' => [
-                'class' => 'form-group col-md-4'
-            ]
-        ]);
-        CRUD::addField([
-            'name'  => 'repetitive_motion_question_21c',
-            'type'  => 'custom_html',
-            'value' => '<p class="font-weight-bold mb-2">More than 2 hours per day</p>',
-            'wrapper' => [
-                'class' => 'form-group col-md-3'
+                'class' => 'form-group col-md-12  pt-5'
             ]
         ]);
 
         CRUD::addField([
-            'name'  => 'question_21',
+            'name'  => 'ventilation_header1',
+            'type'  => 'custom_html',
+            'value' => '<h3 class="font-weight-bold mb-10">Physical Risk Factor</h3>',
+            'wrapper' => [
+                'class' => 'form-group col-md-10'
+            ]
+        ]);
+
+        CRUD::addField([
+            'name'  => 'ventilation_header2',
+            'type'  => 'custom_html',
+            'value' => '<h3 class="font-weight-bold mb-2">Please Choose (Yes/No)</h3>',
+            'wrapper' => [
+                'class' => 'form-group col-md-2'
+            ]
+        ]);
+
+
+        CRUD::addField([
+            'name'  => 'ventilation_question_29a',
+            'type'  => 'custom_html',
+            'value' => '<p class="font-weight-bold mb-10">Inadequate air ventilation</p>',
+            'wrapper' => [
+                'class' => 'form-group col-md-10'
+            ]
+        ]);
+
+
+        CRUD::addField([
+            'name'  => 'question_29',
             'label' => false,
             'type'        => 'select_from_array',
             'options'     => [0 => 'No', 1 => 'Yes'],
@@ -1691,34 +1872,70 @@ class AssessmentCrudController extends CrudController
 
 
 
-
+        // title noise
         CRUD::addField([
-            'name'  => 'repetitive_motion_question_22a',
+            'name'  => 'noise_section',
             'type'  => 'custom_html',
-            'value' => '<p class="font-weight-bold mb-2"></p>',
+            'value' => '<h2 class="font-weight-bold">Section: Noise</h2>',
             'wrapper' => [
-                'class' => 'form-group col-md-3'
-            ]
-        ]);
-        CRUD::addField([
-            'name' => 'repetitive_motion_question_22b',
-            'type'  => 'custom_html',
-            'value' => '<p class="font-weight-bold mb-2">Work using the knee as a "hammer" more than once per minute</p>',
-            'wrapper' => [
-                'class' => 'form-group col-md-4'
-            ]
-        ]);
-        CRUD::addField([
-            'name'  => 'repetitive_motion_question_22c',
-            'type'  => 'custom_html',
-            'value' => '<p class="font-weight-bold mb-2">More than 2 hours per day</p>',
-            'wrapper' => [
-                'class' => 'form-group col-md-3'
+                'class' => 'form-group col-md-12  pt-5'
             ]
         ]);
 
         CRUD::addField([
-            'name'  => 'question_22',
+            'name'  => 'noise_header1',
+            'type'  => 'custom_html',
+            'value' => '<h3 class="font-weight-bold mb-10">Physical Risk Factor</h3>',
+            'wrapper' => [
+                'class' => 'form-group col-md-10'
+            ]
+        ]);
+
+        CRUD::addField([
+            'name'  => 'noise_header2',
+            'type'  => 'custom_html',
+            'value' => '<h3 class="font-weight-bold mb-2">Please Choose (Yes/No)</h3>',
+            'wrapper' => [
+                'class' => 'form-group col-md-2'
+            ]
+        ]);
+
+
+        CRUD::addField([
+            'name'  => 'noise_question_30a',
+            'type'  => 'custom_html',
+            'value' => '<p class="font-weight-bold mb-10">Noise exposure above Permissible Exposure Limit (PEL) (based on previous reports or measurement)</p>',
+            'wrapper' => [
+                'class' => 'form-group col-md-10'
+            ]
+        ]);
+
+
+        CRUD::addField([
+            'name'  => 'question_30',
+            'label' => false,
+            'type'        => 'select_from_array',
+            'options'     => [0 => 'No', 1 => 'Yes'],
+            'allows_null' => false,
+            'default'     => 0,
+            'wrapper' => [
+                'class' => 'form-group d-flex align-self-start col-md-2'
+            ]
+        ]);
+
+
+        CRUD::addField([
+            'name'  => 'noise_question_31a',
+            'type'  => 'custom_html',
+            'value' => '<p class="font-weight-bold mb-10">Exposure to annoying or excessive noise during working hours</p>',
+            'wrapper' => [
+                'class' => 'form-group col-md-10'
+            ]
+        ]);
+
+
+        CRUD::addField([
+            'name'  => 'question_31',
             'label' => false,
             'type'        => 'select_from_array',
             'options'     => [0 => 'No', 1 => 'Yes'],
@@ -1731,6 +1948,51 @@ class AssessmentCrudController extends CrudController
 
 
 
+        CRUD::field([
+            'name'  => 'description',
+            'label' => 'Description',
+            'type'  => 'summernote',
+            'options' => [
+                'height' => 500,
+                'toolbar' => [
+                    ['font', ['bold', 'underline', 'italic']],
+                    ['para', ['ul', 'ol', 'paragraph']],
+                    ['insert', ['link', 'picture']],
+                    ['view', ['fullscreen', 'codeview']],
+                    ['style', ['style']],
+                ],
+
+            ],
+            'wrapper' => [
+                'class' => 'form-group col-md-12 mt-5'
+            ]
+        ]);
+
+
+
+        // $this->crud->addField([
+        //     'name' => 'description2',
+        //     'type' => 'repeatable',
+        //     'fields' => [
+        //         [
+        //             'name' => 'test',
+        //             'type' => 'text',
+
+        //         ],
+        //         [
+        //             'name' => 'test2',
+        //             'type' => 'summernote',
+        //             //'showAsterisk' => false
+        //         ]
+        //     ]
+        // ]);
+
+
+        CRUD::field([
+            'name' => 'user_id',
+            'type' => 'hidden',
+            'value' => backpack_auth()->user()->id
+        ]);
 
 
 
