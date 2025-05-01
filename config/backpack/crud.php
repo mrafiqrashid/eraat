@@ -476,5 +476,6 @@ return [
     ],
 
     'file_name_generator' => \Backpack\CRUD\app\Library\Uploaders\Support\FileNameGenerator::class,
+    'responsive_table' => true,
 
 ];

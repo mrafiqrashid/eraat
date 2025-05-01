@@ -2,17 +2,16 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Requests\ProjectRequest;
+use App\Http\Requests\TaskRequest;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
-use Illuminate\Http\Request;
 
 /**
- * Class ProjectCrudController
+ * Class TaskCrudController
  * @package App\Http\Controllers\Admin
  * @property-read \Backpack\CRUD\app\Library\CrudPanel\CrudPanel $crud
  */
-class ProjectCrudController extends CrudController
+class TaskCrudController extends CrudController
 {
     use \Backpack\CRUD\app\Http\Controllers\Operations\ListOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\CreateOperation;
@@ -27,9 +26,9 @@ class ProjectCrudController extends CrudController
      */
     public function setup()
     {
-        CRUD::setModel(\App\Models\Project::class);
-        CRUD::setRoute(config('backpack.base.route_prefix') . '/project');
-        CRUD::setEntityNameStrings('project', 'projects');
+        CRUD::setModel(\App\Models\Task::class);
+        CRUD::setRoute(config('backpack.base.route_prefix') . '/task');
+        CRUD::setEntityNameStrings('task', 'tasks');
     }
 
     /**
@@ -40,8 +39,15 @@ class ProjectCrudController extends CrudController
      */
     protected function setupListOperation()
     {
+        $projectId = session('project_id');
+
+        if ($projectId) {
+            CRUD::addClause('where', 'project_id', $projectId);
+        } else {
+            CRUD::addClause('where', 'project_id', 0);
+        }
         CRUD::setFromDb(); // set columns from db columns.
-        CRUD::addButtonFromView('line', 'goTo', 'goTo', 'beginning');
+
         /**
          * Columns can be defined using the fluent syntax:
          * - CRUD::column('price')->type('number');
@@ -56,7 +62,7 @@ class ProjectCrudController extends CrudController
      */
     protected function setupCreateOperation()
     {
-        CRUD::setValidation(ProjectRequest::class);
+        CRUD::setValidation(TaskRequest::class);
         CRUD::setFromDb(); // set fields from db columns.
 
         /**
@@ -74,14 +80,5 @@ class ProjectCrudController extends CrudController
     protected function setupUpdateOperation()
     {
         $this->setupCreateOperation();
-    }
-
-    public function taskList(Request $request)
-    {
-        // Store project_id in session or use as needed
-        session(['project_id' => ($request->project_id ?? 0)]);
-
-        // Redirect to the car list page
-        return redirect()->route('task.index');
     }
 }

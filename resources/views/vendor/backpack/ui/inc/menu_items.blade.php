@@ -4,3 +4,4 @@
 
 <x-backpack::menu-item title="Projects" icon="la la-question" :link="backpack_url('project')" />
 <x-backpack::menu-item title="Assessments" icon="la la-question" :link="backpack_url('assessment')" />
+<x-backpack::menu-item title="Tasks" icon="la la-question" :link="backpack_url('task')" />

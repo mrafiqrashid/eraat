@@ -1,3 +1,13 @@
-<a href="{{ route('assessment.create', ['project_id' => $entry->getKey()]) }}" class="btn btn-sm btn-link text-primary" title="Assessment">
+{{-- <a href="{{ route('assessment.create', ['project_id' => $entry->getKey()]) }}"
+    class="btn btn-sm btn-link text-primary" title="Assessment">
     <i class="la la-arrow-right"></i> Assessment
-</a>
+</a> --}}
+
+
+<form action="{{ route('taskList') }}" method="POST" style="display:inline;">
+    @csrf
+    <input type="hidden" name="project_id" value="{{ $entry->getKey() }}">
+    <button class="btn btn-sm btn-link text-primary" title="Task">
+        <i class="la la-arrow-right"></i> Task
+    </button>
+</form>
