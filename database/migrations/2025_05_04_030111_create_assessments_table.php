@@ -45,9 +45,10 @@ return new class extends Migration
             $table->integer('question_30')->nullable();
             $table->integer('question_31')->nullable();
             $table->string('description')->nullable();
-            $table->foreignId('task_id')->constrained()->onDelete('cascade');
-            $table->foreignId('project_id')->constrained()->onDelete('cascade');
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->foreignId('project_id')->constrained('projects')->onDelete('cascade');
+            $table->foreignId('assessee_id')->constrained('assessees')->onDelete('cascade');
+            $table->foreignId('task_id')->constrained('tasks')->onDelete('cascade');
+            $table->foreignId('created_by')->constrained('users')->onDelete('cascade');
             $table->timestamps();
             $table->softDeletes();
         });

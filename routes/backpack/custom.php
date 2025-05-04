@@ -18,8 +18,16 @@ Route::group([
 ], function () { // custom admin routes
     Route::crud('project', 'ProjectCrudController');
     Route::post('project/taskList', 'ProjectCrudController@taskList')->name('taskList');
+    Route::post('project/assesseeList', 'ProjectCrudController@assesseeList')->name('assesseeList');
+    Route::post('project/assessmentList', 'ProjectCrudController@assessmentList')->name('assessmentList');
     Route::crud('assessment', 'AssessmentCrudController');
+    Route::post('assessment/assessmentPrint', 'AssessmentCrudController@assessmentPrint')->name('assessmentPrint');
     Route::crud('task', 'TaskCrudController');
+    Route::crud('project-status', 'ProjectStatusCrudController');
+    Route::crud('assessee', 'AssesseeCrudController');
+    Route::crud('race', 'RaceCrudController');
+    Route::crud('education-level', 'EducationLevelCrudController');
+    Route::crud('maritial-status', 'MaritialStatusCrudController');
 }); // this should be the absolute last line of this file
 
 /**

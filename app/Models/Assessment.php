@@ -35,6 +35,22 @@ class Assessment extends Model
     | RELATIONS
     |--------------------------------------------------------------------------
     */
+    public function project()
+    {
+        return $this->belongsTo(Project::class, 'project_id');
+        // If your foreign key isn't 'user_id', you need to specify it (like 'created_by')
+    }
+
+    public function assessee()
+    {
+        return $this->belongsTo(Assessee::class, 'assessee_id');
+        // If your foreign key isn't 'user_id', you need to specify it (like 'assessee_id')
+    }
+    public function task()
+    {
+        return $this->belongsTo(Task::class, 'task_id');
+        // If your foreign key isn't 'user_id', you need to specify it (like 'task_id')
+    }
 
     /*
     |--------------------------------------------------------------------------

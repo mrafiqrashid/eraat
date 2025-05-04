@@ -5,9 +5,8 @@ namespace App\Models;
 use Backpack\CRUD\app\Models\Traits\CrudTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\Log;
 
-class Project extends Model
+class Assessee extends Model
 {
     use CrudTrait;
     use HasFactory;
@@ -18,7 +17,7 @@ class Project extends Model
     |--------------------------------------------------------------------------
     */
 
-    protected $table = 'projects';
+    protected $table = 'assessees';
     // protected $primaryKey = 'id';
     // public $timestamps = false;
     protected $guarded = ['id'];
@@ -36,27 +35,32 @@ class Project extends Model
     | RELATIONS
     |--------------------------------------------------------------------------
     */
-
-    public function status()
+    public function race()
     {
-        return $this->belongsTo(ProjectStatus::class);
+        return $this->belongsTo(Race::class, 'race_id');
     }
-
-    public function users()
+    public function educationLevel()
+    {
+        return $this->belongsTo(EducationLevel::class, 'education_level_id');
+    }
+    public function maritialStatus()
+    {
+        return $this->belongsTo(MaritialStatus::class, 'maritial_status_id');
+    }
+    public function project()
+    {
+        return $this->belongsTo(Project::class, 'project_id');
+    }
+    public function user()
     {
         return $this->belongsTo(User::class, 'created_by');
         // If your foreign key isn't 'user_id', you need to specify it (like 'created_by')
     }
-    public function assessees()
-    {
-        return $this->hasMany(Assessee::class);
-        // If your foreign key isn't 'user_id', you need to specify it (like 'created_by')
-    }
-    public function tasks()
-    {
-        return $this->hasMany(Task::class);
-        // If your foreign key isn't 'user_id', you need to specify it (like 'created_by')
-    }
+    // public function assessment()
+    // {
+    //     return $this->belongsTo(Assessment::class, 'ass');
+    // }
+
     /*
     |--------------------------------------------------------------------------
     | SCOPES
@@ -74,9 +78,16 @@ class Project extends Model
     | MUTATORS
     |--------------------------------------------------------------------------
     */
-
-    public function getDurationFormattedAttribute()
+    public function getRaceNameAttribute()
     {
-        return $this->duration . ' day(s)';
+        return $this->races?->race; // or whatever your column is
+    }
+    public function getEducationLevelNameAttribute()
+    {
+        return $this->educationLevel?->education_level; // or whatever your column is
+    }
+    public function getMaritialStatusNameAttribute()
+    {
+        return $this->maritialStatus?->maritial_status; // or whatever your column is
     }
 }

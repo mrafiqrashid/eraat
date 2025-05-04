@@ -5,3 +5,8 @@
 <x-backpack::menu-item title="Projects" icon="la la-question" :link="backpack_url('project')" />
 <x-backpack::menu-item title="Assessments" icon="la la-question" :link="backpack_url('assessment')" />
 <x-backpack::menu-item title="Tasks" icon="la la-question" :link="backpack_url('task')" />
+<x-backpack::menu-item title="Project statuses" icon="la la-question" :link="backpack_url('project-status')" />
+<x-backpack::menu-item title="Assessees" icon="la la-question" :link="backpack_url('assessee')" />
+<x-backpack::menu-item title="Races" icon="la la-question" :link="backpack_url('race')" />
+<x-backpack::menu-item title="Education levels" icon="la la-question" :link="backpack_url('education-level')" />
+<x-backpack::menu-item title="Maritial statuses" icon="la la-question" :link="backpack_url('maritial-status')" />

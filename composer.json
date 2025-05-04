@@ -12,6 +12,7 @@
         "php": "^8.2",
         "backpack/crud": "^6.0",
         "backpack/theme-tabler": "^1.2",
+        "h4cc/wkhtmltopdf-amd64": "0.12.x",
         "laravel/framework": "^12.0",
         "laravel/tinker": "^2.10.1"
     },
