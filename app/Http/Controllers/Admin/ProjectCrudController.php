@@ -9,6 +9,8 @@ use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
+use Barryvdh\Snappy\Facades\SnappyPdf;
+use Maatwebsite\Excel\Facades\Excel;
 
 /**
  * Class ProjectCrudController
@@ -43,6 +45,32 @@ class ProjectCrudController extends CrudController
      */
     protected function setupListOperation()
     {
+        view()->share([
+            'print_BTN' => [
+                'list1' => [
+                    'data-value' => 'ageDebtor_pdf_001',
+                    'data-value2' => 'PDF',
+                    'display' => 'Age Debtors Report (PDF)',
+                ],
+                'list2' => [
+                    'data-value' => 'ageDebtor_pdf_002',
+                    'data-value2' => 'PDF',
+                    'display' => 'Age Debtors Details Report (PDF)',
+                ],
+                'list3' => [
+                    'data-value' => 'ageDebtor_excel_001',
+                    'data-value2' => 'Excel',
+                    'display' => 'Age Debtors Report (Excel)',
+                ],
+                'list4' => [
+                    'data-value' => 'ageDebtor_excel_002',
+                    'data-value2' => 'Excel',
+                    'display' => 'Age Debtors Details Report (Excel)',
+                ],
+            ],
+            'route' => 'ageDebtor_export',
+        ]);
+        CRUD::button('print')->stack('top')->view('crud::buttons.print');
         CRUD::setFromDb(); // set columns from db columns.
         CRUD::column([
             'name' => 'duration_formatted',
@@ -199,5 +227,60 @@ class ProjectCrudController extends CrudController
         return redirect()->route('assessment.index');
     }
 
-    
+
+    public function export(Request $request)
+    {
+        try {
+            $collection = collect();
+            // retrieve data operation
+            if (
+                isset($request->report_id) &&
+                ($request->report_id == 'ageDebtor_pdf_001' || $request->report_id == 'ageDebtor_excel_001')
+            ) {
+
+                $collection = $this->getAgeDebtors($request);
+                $request->merge([
+                    'view' => 'reports.ageDebtor_rpt_001',
+                    'titleReport' => __('Age Debtors Report'),
+                ]);
+            } else if (
+                isset($request->report_id) &&
+                ($request->report_id == 'ageDebtor_pdf_002' || $request->report_id == 'ageDebtor_excel_002')
+            ) {
+                $ageDebtors = $this->getAgeDebtors($request);
+                $ageDebtorDetails = $this->getAgeDebtorDetails($request);
+                $collection = collect(['ageDebtors' => $ageDebtors, 'ageDebtorDetails' => $ageDebtorDetails]);
+                $request->merge([
+                    'view' => 'reports.ageDebtor_rpt_002',
+                    'titleReport' => __('Age Debtors Report'),
+                ]);
+            }
+
+            // report type operation
+            if ($request->report_id == 'ageDebtor_pdf_001' || $request->report_id == 'ageDebtor_pdf_002') {
+                $request->merge([
+                    'reportType' => 'pdf',
+                ]);
+                $pdf = SnappyPdf::loadView($request['view'], [
+                    'data' => $collection,
+                    'request' => $request,
+                    'imageLink' => 'data:image/png;base64,' . base64_encode(file_get_contents('../public/favicon.ico')),
+                ]);
+
+                $pdf->setPaper('a4', 'landscape')
+                    ->setOption('footer-right', '[page]')
+                    ->setOrientation('landscape');
+                return $pdf->inline('Expense Report -' . now() . '.pdf');
+            } elseif ($request->report_id == 'ageDebtor_excel_001' || $request->report_id == 'ageDebtor_excel_002') {
+                $request->merge([
+                    'reportType' => 'xlsx',
+                ]);
+                return Excel::download(new ExcelExport($request, $collection), 'Age Debtors Report.xlsx');
+            } else {
+                return redirect()->back()->with('error');
+            }
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', $e->getMessage());
+        }
+    }
 }

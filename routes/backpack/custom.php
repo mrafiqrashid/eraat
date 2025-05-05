@@ -20,6 +20,7 @@ Route::group([
     Route::post('project/taskList', 'ProjectCrudController@taskList')->name('taskList');
     Route::post('project/assesseeList', 'ProjectCrudController@assesseeList')->name('assesseeList');
     Route::post('project/assessmentList', 'ProjectCrudController@assessmentList')->name('assessmentList');
+    Route::post('project/export', 'ProjectCrudController@export')->name('ageDebtor_export');
     Route::crud('assessment', 'AssessmentCrudController');
     Route::post('assessment/assessmentPrint', 'AssessmentCrudController@assessmentPrint')->name('assessmentPrint');
     Route::crud('task', 'TaskCrudController');
