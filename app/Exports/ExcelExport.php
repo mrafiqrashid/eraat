@@ -26,7 +26,7 @@ class ExcelExport implements FromView
             [
                 'data' => $this->collection,
                 'request' => $this->request,
-                'imageLink' => '../public/favicon.ico',
+                'imageLink' => '../public/eraat.png',
             ],
         );
     }

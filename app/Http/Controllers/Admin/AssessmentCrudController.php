@@ -4,12 +4,14 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests\AssessmentRequest;
 use App\Models\Assessee;
+use App\Models\Assessment;
 use App\Models\Project;
 use App\Models\Task;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
+use Barryvdh\Snappy\Facades\SnappyPdf;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Request;
 
 /**
  * Class AssessmentCrudController
@@ -75,7 +77,25 @@ class AssessmentCrudController extends CrudController
     protected function setupShowOperation()
     {
         $this->setupListOperation();
-        CRUD::addButtonFromView('line', 'print', 'view', 'beginning');
+        // CRUD::addButtonFromView('line', 'print', 'view', 'beginning');
+        view()->share([
+            'print_BTN' => [
+                'list1' => [
+                    'data-value' => 'assessment_pdf_001',
+                    'data-value2' => 'PDF',
+                    'assessment_id' => CRUD::getCurrentEntryId(),
+                    'display' => 'Assessment Report (PDF)',
+                ],
+                'list2' => [
+                    'data-value' => 'assessment_excel_001',
+                    'data-value2' => 'Excel',
+                    'assessment_id' => CRUD::getCurrentEntryId(),
+                    'display' => 'Assessment Report (Excel)',
+                ],
+            ],
+            'route' => 'assessment_export',
+        ]);
+        CRUD::button('print')->stack('line')->view('crud::buttons.print');
     }
 
 
@@ -89,13 +109,13 @@ class AssessmentCrudController extends CrudController
     protected function setupCreateOperation()
     {
         CRUD::setValidation(AssessmentRequest::class);
+
         CRUD::addField([
             'name' => 'project_id',
             'type' => 'hidden',
             'value' => session('filtered_project_id'),
             'label' => 'Project test',
         ]);
-        Log::info("project id", [session('filtered_project_id')]);
         CRUD::addField([
             'name' => 'project_name',
             'type' => 'text',
@@ -218,7 +238,7 @@ class AssessmentCrudController extends CrudController
             'tab' => 'Awkward Posture'
         ]);
         CRUD::addField([
-            'name'  => 'question_1',
+            'name'  => 'ap_question_1',
             'label' => false,
             'type'        => 'select_from_array',
             'options'     => [0 => 'Not applicable', 1 => 'No', 2 => 'Yes'],
@@ -226,6 +246,10 @@ class AssessmentCrudController extends CrudController
             'default'     => 0,
             'wrapper' => [
                 'class' => 'form-group d-flex align-self-start col-md-2'
+            ],
+            'attributes' => [
+                'id' => 'ap_question_1',
+                'name' => 'ap_question_1',
             ],
             'tab' => 'Awkward Posture'
         ]);
@@ -268,7 +292,7 @@ class AssessmentCrudController extends CrudController
             'tab' => 'Awkward Posture'
         ]);
         CRUD::addField([
-            'name'  => 'question_2',
+            'name'  => 'ap_question_2',
             'label' => false,
             'type'        => 'select_from_array',
             'options'     => [0 => 'Not applicable', 1 => 'No', 2 => 'Yes'],
@@ -276,6 +300,10 @@ class AssessmentCrudController extends CrudController
             'default'     => 0,
             'wrapper' => [
                 'class' => 'form-group d-flex align-self-start col-md-2'
+            ],
+            'attributes' => [
+                'id' => 'ap_question_2',
+                'name' => 'ap_question_2',
             ],
             'tab' => 'Awkward Posture'
         ]);
@@ -320,7 +348,7 @@ class AssessmentCrudController extends CrudController
             'tab' => 'Awkward Posture'
         ]);
         CRUD::addField([
-            'name'  => 'question_3',
+            'name'  => 'ap_question_3',
             'label' => false,
             'type'        => 'select_from_array',
             'options'     => [0 => 'Not applicable', 1 => 'No', 2 => 'Yes'],
@@ -328,6 +356,10 @@ class AssessmentCrudController extends CrudController
             'default'     => 0,
             'wrapper' => [
                 'class' => 'form-group d-flex align-self-start col-md-2'
+            ],
+            'attributes' => [
+                'id' => 'ap_question_3',
+                'name' => 'ap_question_3',
             ],
             'tab' => 'Awkward Posture'
         ]);
@@ -371,7 +403,7 @@ class AssessmentCrudController extends CrudController
             'tab' => 'Awkward Posture'
         ]);
         CRUD::addField([
-            'name'  => 'question_4',
+            'name'  => 'ap_question_4',
             'label' => false,
             'type'        => 'select_from_array',
             'options'     => [0 => 'Not applicable', 1 => 'No', 2 => 'Yes'],
@@ -379,6 +411,10 @@ class AssessmentCrudController extends CrudController
             'default'     => 0,
             'wrapper' => [
                 'class' => 'form-group d-flex align-self-start col-md-2'
+            ],
+            'attributes' => [
+                'id' => 'ap_question_4',
+                'name' => 'ap_question_4',
             ],
             'tab' => 'Awkward Posture'
         ]);
@@ -424,7 +460,7 @@ class AssessmentCrudController extends CrudController
             'tab' => 'Awkward Posture'
         ]);
         CRUD::addField([
-            'name'  => 'question_5',
+            'name'  => 'ap_question_5',
             'label' => false,
             'type'        => 'select_from_array',
             'options'     => [0 => 'Not applicable', 1 => 'No', 2 => 'Yes'],
@@ -432,6 +468,10 @@ class AssessmentCrudController extends CrudController
             'default'     => 0,
             'wrapper' => [
                 'class' => 'form-group d-flex align-self-start col-md-2'
+            ],
+            'attributes' => [
+                'id' => 'ap_question_5',
+                'name' => 'ap_question_5',
             ],
             'tab' => 'Awkward Posture'
         ]);
@@ -476,7 +516,7 @@ class AssessmentCrudController extends CrudController
             'tab' => 'Awkward Posture'
         ]);
         CRUD::addField([
-            'name'  => 'question_6',
+            'name'  => 'ap_question_6',
             'label' => false,
             'type'        => 'select_from_array',
             'options'     => [0 => 'Not applicable', 1 => 'No', 2 => 'Yes'],
@@ -484,6 +524,10 @@ class AssessmentCrudController extends CrudController
             'default'     => 0,
             'wrapper' => [
                 'class' => 'form-group d-flex align-self-start col-md-2'
+            ],
+            'attributes' => [
+                'id' => 'ap_question_6',
+                'name' => 'ap_question_6',
             ],
             'tab' => 'Awkward Posture'
         ]);
@@ -529,7 +573,7 @@ class AssessmentCrudController extends CrudController
             'tab' => 'Awkward Posture'
         ]);
         CRUD::addField([
-            'name'  => 'question_7',
+            'name'  => 'ap_question_7',
             'label' => false,
             'type'        => 'select_from_array',
             'options'     => [0 => 'Not applicable', 1 => 'No', 2 => 'Yes'],
@@ -537,6 +581,10 @@ class AssessmentCrudController extends CrudController
             'default'     => 0,
             'wrapper' => [
                 'class' => 'form-group d-flex align-self-start col-md-2'
+            ],
+            'attributes' => [
+                'id' => 'ap_question_7',
+                'name' => 'ap_question_7',
             ],
             'tab' => 'Awkward Posture'
         ]);
@@ -579,7 +627,7 @@ class AssessmentCrudController extends CrudController
             'tab' => 'Awkward Posture'
         ]);
         CRUD::addField([
-            'name'  => 'question_8',
+            'name'  => 'ap_question_8',
             'label' => false,
             'type'        => 'select_from_array',
             'options'     => [0 => 'Not applicable', 1 => 'No', 2 => 'Yes'],
@@ -587,6 +635,10 @@ class AssessmentCrudController extends CrudController
             'default'     => 0,
             'wrapper' => [
                 'class' => 'form-group d-flex align-self-start col-md-2'
+            ],
+            'attributes' => [
+                'id' => 'ap_question_8',
+                'name' => 'ap_question_8',
             ],
             'tab' => 'Awkward Posture'
         ]);
@@ -631,7 +683,7 @@ class AssessmentCrudController extends CrudController
             'tab' => 'Awkward Posture'
         ]);
         CRUD::addField([
-            'name'  => 'question_9',
+            'name'  => 'ap_question_9',
             'label' => false,
             'type'        => 'select_from_array',
             'options'     => [0 => 'Not applicable', 1 => 'No', 2 => 'Yes'],
@@ -639,6 +691,10 @@ class AssessmentCrudController extends CrudController
             'default'     => 0,
             'wrapper' => [
                 'class' => 'form-group d-flex align-self-start col-md-2'
+            ],
+            'attributes' => [
+                'id' => 'ap_question_9',
+                'name' => 'ap_question_9',
             ],
             'tab' => 'Awkward Posture'
         ]);
@@ -681,7 +737,7 @@ class AssessmentCrudController extends CrudController
             'tab' => 'Awkward Posture'
         ]);
         CRUD::addField([
-            'name'  => 'question_10',
+            'name'  => 'ap_question_10',
             'label' => false,
             'type'        => 'select_from_array',
             'options'     => [0 => 'Not applicable', 1 => 'No', 2 => 'Yes'],
@@ -689,6 +745,10 @@ class AssessmentCrudController extends CrudController
             'default'     => 0,
             'wrapper' => [
                 'class' => 'form-group d-flex align-self-start col-md-2'
+            ],
+            'attributes' => [
+                'id' => 'ap_question_10',
+                'name' => 'ap_question_10',
             ],
             'tab' => 'Awkward Posture'
         ]);
@@ -733,7 +793,7 @@ class AssessmentCrudController extends CrudController
             'tab' => 'Awkward Posture'
         ]);
         CRUD::addField([
-            'name'  => 'question_11',
+            'name'  => 'ap_question_11',
             'label' => false,
             'type'        => 'select_from_array',
             'options'     => [0 => 'Not applicable', 1 => 'No', 2 => 'Yes'],
@@ -741,6 +801,10 @@ class AssessmentCrudController extends CrudController
             'default'     => 0,
             'wrapper' => [
                 'class' => 'form-group d-flex align-self-start col-md-2'
+            ],
+            'attributes' => [
+                'id' => 'ap_question_11',
+                'name' => 'ap_question_11',
             ],
             'tab' => 'Awkward Posture'
         ]);
@@ -785,7 +849,7 @@ class AssessmentCrudController extends CrudController
             'tab' => 'Awkward Posture'
         ]);
         CRUD::addField([
-            'name'  => 'question_12',
+            'name'  => 'ap_question_12',
             'label' => false,
             'type'        => 'select_from_array',
             'options'     => [0 => 'Not applicable', 1 => 'No', 2 => 'Yes'],
@@ -793,6 +857,10 @@ class AssessmentCrudController extends CrudController
             'default'     => 0,
             'wrapper' => [
                 'class' => 'form-group d-flex align-self-start col-md-2'
+            ],
+            'attributes' => [
+                'id' => 'ap_question_12',
+                'name' => 'ap_question_12',
             ],
             'tab' => 'Awkward Posture'
         ]);
@@ -838,7 +906,7 @@ class AssessmentCrudController extends CrudController
             'tab' => 'Awkward Posture'
         ]);
         CRUD::addField([
-            'name'  => 'question_13',
+            'name'  => 'ap_question_13',
             'label' => false,
             'type'        => 'select_from_array',
             'options'     => [0 => 'Not applicable', 1 => 'No', 2 => 'Yes'],
@@ -847,8 +915,47 @@ class AssessmentCrudController extends CrudController
             'wrapper' => [
                 'class' => 'form-group d-flex align-self-start col-md-2'
             ],
+            'attributes' => [
+                'id' => 'ap_question_13',
+                'name' => 'ap_question_13',
+            ],
             'tab' => 'Awkward Posture'
         ]);
+
+
+
+
+        CRUD::addField([
+            'name'  => 'ap_spacer2',
+            'type'  => 'custom_html',
+            'value' => '&nbsp;',
+            'wrapper' => [
+                'class' => 'form-group col-md-10',
+            ],
+            'tab' => 'Awkward Posture'
+        ]);
+        CRUD::addField([
+            'name'  => 'ap_result',
+            'label' => false,
+            'type'        => 'number',
+            'attributes' => [
+                'readonly' => true
+            ],
+            'allows_null' => false,
+            'default'     => 0,
+            'wrapper' => [
+                'class' => 'form-group d-flex align-self-start col-md-2'
+            ],
+            'attributes' => [
+                'id' => 'ap_result',
+                'name' => 'ap_result',
+            ],
+            'tab' => 'Awkward Posture'
+        ]);
+
+
+
+
 
 
 
@@ -948,7 +1055,7 @@ class AssessmentCrudController extends CrudController
             'tab' => 'Static & Sustained Work Posture'
         ]);
         CRUD::addField([
-            'name'  => 'question_14',
+            'name'  => 'snswp_question_1',
             'label' => false,
             'type'        => 'select_from_array',
             'options'     => [0 => 'Not applicable', 1 => 'No', 2 => 'Yes'],
@@ -956,6 +1063,10 @@ class AssessmentCrudController extends CrudController
             'default'     => 0,
             'wrapper' => [
                 'class' => 'form-group d-flex align-self-start col-md-2'
+            ],
+            'attributes' => [
+                'id' => 'snswp_question_1',
+                'name' => 'snswp_question_1',
             ],
             'tab' => 'Static & Sustained Work Posture'
         ]);
@@ -1002,7 +1113,7 @@ class AssessmentCrudController extends CrudController
             'tab' => 'Static & Sustained Work Posture'
         ]);
         CRUD::addField([
-            'name'  => 'question_15',
+            'name'  => 'snswp_question_2',
             'label' => false,
             'type'        => 'select_from_array',
             'options'     => [0 => 'Not applicable', 1 => 'No', 2 => 'Yes'],
@@ -1010,6 +1121,10 @@ class AssessmentCrudController extends CrudController
             'default'     => 0,
             'wrapper' => [
                 'class' => 'form-group d-flex align-self-start col-md-2'
+            ],
+            'attributes' => [
+                'id' => 'snswp_question_2',
+                'name' => 'snswp_question_2',
             ],
             'tab' => 'Static & Sustained Work Posture'
         ]);
@@ -1057,7 +1172,7 @@ class AssessmentCrudController extends CrudController
             'tab' => 'Static & Sustained Work Posture'
         ]);
         CRUD::addField([
-            'name'  => 'question_16',
+            'name'  => 'snswp_question_3',
             'label' => false,
             'type'        => 'select_from_array',
             'options'     => [0 => 'Not applicable', 1 => 'No', 2 => 'Yes'],
@@ -1065,6 +1180,40 @@ class AssessmentCrudController extends CrudController
             'default'     => 0,
             'wrapper' => [
                 'class' => 'form-group d-flex align-self-start col-md-2'
+            ],
+            'attributes' => [
+                'id' => 'snswp_question_3',
+                'name' => 'snswp_question_3',
+            ],
+            'tab' => 'Static & Sustained Work Posture'
+        ]);
+
+
+
+        CRUD::addField([
+            'name'  => 'snswp_spacer2',
+            'type'  => 'custom_html',
+            'value' => '&nbsp;',
+            'wrapper' => [
+                'class' => 'form-group col-md-10',
+            ],
+            'tab' => 'Static & Sustained Work Posture'
+        ]);
+        CRUD::addField([
+            'name'  => 'snswp_result',
+            'label' => false,
+            'type'        => 'number',
+            'attributes' => [
+                'readonly' => true
+            ],
+            'allows_null' => false,
+            'default'     => 0,
+            'wrapper' => [
+                'class' => 'form-group d-flex align-self-start col-md-2'
+            ],
+            'attributes' => [
+                'id' => 'snswp_result',
+                'name' => 'snswp_result',
             ],
             'tab' => 'Static & Sustained Work Posture'
         ]);
@@ -1163,6 +1312,10 @@ class AssessmentCrudController extends CrudController
             'wrapper' => [
                 'class' => 'form-group d-flex align-self-start col-md-4'
             ],
+            'attributes' => [
+                'id' => 'fe_question_1a',
+                'name' => 'fe_question_1a',
+            ],
             'tab' => 'Forceful Exertion'
         ]);
 
@@ -1176,6 +1329,10 @@ class AssessmentCrudController extends CrudController
             ],
             'wrapper' => [
                 'class' => 'form-group d-flex align-self-start col-md-4'
+            ],
+            'attributes' => [
+                'id' => 'fe_question_1b',
+                'name' => 'fe_question_1b',
             ],
             'tab' => 'Forceful Exertion'
         ]);
@@ -1203,6 +1360,10 @@ class AssessmentCrudController extends CrudController
             'wrapper' => [
                 'class' => 'form-group d-flex align-self-start col-md-4'
             ],
+            'attributes' => [
+                'id' => 'fe_question_2a',
+                'name' => 'fe_question_2a',
+            ],
             'tab' => 'Forceful Exertion'
         ]);
         CRUD::addField([
@@ -1215,6 +1376,10 @@ class AssessmentCrudController extends CrudController
             ],
             'wrapper' => [
                 'class' => 'form-group d-flex align-self-start col-md-4'
+            ],
+            'attributes' => [
+                'id' => 'fe_question_2b',
+                'name' => 'fe_question_2b',
             ],
             'tab' => 'Forceful Exertion'
         ]);
@@ -1241,6 +1406,10 @@ class AssessmentCrudController extends CrudController
             'wrapper' => [
                 'class' => 'form-group d-flex align-self-start col-md-4'
             ],
+            'attributes' => [
+                'id' => 'fe_question_3a',
+                'name' => 'fe_question_3a',
+            ],
             'tab' => 'Forceful Exertion'
         ]);
         CRUD::addField([
@@ -1253,6 +1422,10 @@ class AssessmentCrudController extends CrudController
             ],
             'wrapper' => [
                 'class' => 'form-group d-flex align-self-start col-md-4'
+            ],
+            'attributes' => [
+                'id' => 'fe_question_3b',
+                'name' => 'fe_question_3b',
             ],
             'tab' => 'Forceful Exertion'
         ]);
@@ -1282,6 +1455,10 @@ class AssessmentCrudController extends CrudController
             'wrapper' => [
                 'class' => 'form-group d-flex align-self-start col-md-4'
             ],
+            'attributes' => [
+                'id' => 'fe_question_4a',
+                'name' => 'fe_question_4a',
+            ],
             'tab' => 'Forceful Exertion'
         ]);
         CRUD::addField([
@@ -1294,6 +1471,10 @@ class AssessmentCrudController extends CrudController
             ],
             'wrapper' => [
                 'class' => 'form-group d-flex align-self-start col-md-4'
+            ],
+            'attributes' => [
+                'id' => 'fe_question_4b',
+                'name' => 'fe_question_4b',
             ],
             'tab' => 'Forceful Exertion'
         ]);
@@ -1319,6 +1500,10 @@ class AssessmentCrudController extends CrudController
             'wrapper' => [
                 'class' => 'form-group d-flex align-self-start col-md-4'
             ],
+            'attributes' => [
+                'id' => 'fe_question_5a',
+                'name' => 'fe_question_5a',
+            ],
             'tab' => 'Forceful Exertion'
         ]);
         CRUD::addField([
@@ -1331,6 +1516,10 @@ class AssessmentCrudController extends CrudController
             ],
             'wrapper' => [
                 'class' => 'form-group d-flex align-self-start col-md-4'
+            ],
+            'attributes' => [
+                'id' => 'fe_question_5b',
+                'name' => 'fe_question_5b',
             ],
             'tab' => 'Forceful Exertion'
         ]);
@@ -1350,14 +1539,20 @@ class AssessmentCrudController extends CrudController
             'tab' => 'Forceful Exertion'
         ]);
         CRUD::addField([
-            'name'  => 'question_17',
+            'name'  => 'fe_result',
             'label' => false,
-            'type'        => 'select_from_array',
-            'options'     => [0 => 'Not applicable', 1 => 'No', 2 => 'Yes'],
+            'type'        => 'number',
+            'attributes' => [
+                'readonly' => true
+            ],
             'allows_null' => false,
             'default'     => 0,
             'wrapper' => [
                 'class' => 'form-group d-flex align-self-start col-md-2'
+            ],
+            'attributes' => [
+                'id' => 'fe_result',
+                'name' => 'fe_result',
             ],
             'tab' => 'Forceful Exertion'
         ]);
@@ -1448,7 +1643,7 @@ class AssessmentCrudController extends CrudController
         ]);
 
         CRUD::addField([
-            'name'  => 'question_18',
+            'name'  => 'rm_question_1',
             'label' => false,
             'type'        => 'select_from_array',
             'options'     => [0 => 'Not applicable', 1 => 'No', 2 => 'Yes'],
@@ -1456,6 +1651,10 @@ class AssessmentCrudController extends CrudController
             'default'     => 0,
             'wrapper' => [
                 'class' => 'form-group d-flex align-self-start col-md-2'
+            ],
+            'attributes' => [
+                'id' => 'rm_question_1',
+                'name' => 'rm_question_1',
             ],
             'tab' => 'Repetitive Motion'
         ]);
@@ -1492,7 +1691,7 @@ class AssessmentCrudController extends CrudController
         ]);
 
         CRUD::addField([
-            'name'  => 'question_19',
+            'name'  => 'rm_question_2',
             'label' => false,
             'type'        => 'select_from_array',
             'options'     => [0 => 'Not applicable', 1 => 'No', 2 => 'Yes'],
@@ -1500,6 +1699,10 @@ class AssessmentCrudController extends CrudController
             'default'     => 0,
             'wrapper' => [
                 'class' => 'form-group d-flex align-self-start col-md-2'
+            ],
+            'attributes' => [
+                'id' => 'rm_question_2',
+                'name' => 'rm_question_2',
             ],
             'tab' => 'Repetitive Motion'
         ]);
@@ -1540,7 +1743,7 @@ class AssessmentCrudController extends CrudController
         ]);
 
         CRUD::addField([
-            'name'  => 'question_20',
+            'name'  => 'rm_question_3',
             'label' => false,
             'type'        => 'select_from_array',
             'options'     => [0 => 'Not applicable', 1 => 'No', 2 => 'Yes'],
@@ -1548,6 +1751,10 @@ class AssessmentCrudController extends CrudController
             'default'     => 0,
             'wrapper' => [
                 'class' => 'form-group d-flex align-self-start col-md-2'
+            ],
+            'attributes' => [
+                'id' => 'rm_question_3',
+                'name' => 'rm_question_3',
             ],
             'tab' => 'Repetitive Motion'
         ]);
@@ -1588,7 +1795,7 @@ class AssessmentCrudController extends CrudController
         ]);
 
         CRUD::addField([
-            'name'  => 'question_21',
+            'name'  => 'rm_question_4',
             'label' => false,
             'type'        => 'select_from_array',
             'options'     => [0 => 'Not applicable', 1 => 'No', 2 => 'Yes'],
@@ -1596,6 +1803,10 @@ class AssessmentCrudController extends CrudController
             'default'     => 0,
             'wrapper' => [
                 'class' => 'form-group d-flex align-self-start col-md-2'
+            ],
+            'attributes' => [
+                'id' => 'rm_question_4',
+                'name' => 'rm_question_4',
             ],
             'tab' => 'Repetitive Motion'
         ]);
@@ -1636,7 +1847,7 @@ class AssessmentCrudController extends CrudController
         ]);
 
         CRUD::addField([
-            'name'  => 'question_22',
+            'name'  => 'rm_question_5',
             'label' => false,
             'type'        => 'select_from_array',
             'options'     => [0 => 'Not applicable', 1 => 'No', 2 => 'Yes'],
@@ -1644,6 +1855,40 @@ class AssessmentCrudController extends CrudController
             'default'     => 0,
             'wrapper' => [
                 'class' => 'form-group d-flex align-self-start col-md-2'
+            ],
+            'attributes' => [
+                'id' => 'rm_question_5',
+                'name' => 'rm_question_5',
+            ],
+            'tab' => 'Repetitive Motion'
+        ]);
+
+
+
+        CRUD::addField([
+            'name'  => 'rm_spacer2',
+            'type'  => 'custom_html',
+            'value' => '&nbsp;',
+            'wrapper' => [
+                'class' => 'form-group col-md-10',
+            ],
+            'tab' => 'Repetitive Motion'
+        ]);
+        CRUD::addField([
+            'name'  => 'rm_result',
+            'label' => false,
+            'type'        => 'number',
+            'attributes' => [
+                'readonly' => true
+            ],
+            'allows_null' => false,
+            'default'     => 0,
+            'wrapper' => [
+                'class' => 'form-group d-flex align-self-start col-md-2'
+            ],
+            'attributes' => [
+                'id' => 'rm_result',
+                'name' => 'rm_result',
             ],
             'tab' => 'Repetitive Motion'
         ]);
@@ -1715,7 +1960,7 @@ class AssessmentCrudController extends CrudController
 
 
         CRUD::addField([
-            'name'  => 'repetitive_motion_question_23a',
+            'name'  => 'vibration_subheader_1a',
             'type'  => 'custom_html',
             'value' => '<p class="font-weight-bold mb-2">Hand-Arm (segmental vibration)</p>',
             'wrapper' => [
@@ -1724,7 +1969,7 @@ class AssessmentCrudController extends CrudController
             'tab' => 'Vibration'
         ]);
         CRUD::addField([
-            'name' => 'repetitive_motion_question_23b',
+            'name' => 'vibration_subheader_1b',
             'type'  => 'custom_html',
             'value' => '<p class="font-weight-bold mb-2">Work using power tools (ie: battery powered/ electical pneumatic/ hydraulic) <span class="text-decoration-underline">without</span> PPE*</p>',
             'wrapper' => [
@@ -1733,7 +1978,7 @@ class AssessmentCrudController extends CrudController
             'tab' => 'Vibration'
         ]);
         CRUD::addField([
-            'name'  => 'repetitive_motion_question_23c',
+            'name'  => 'vibration_subheader_1c',
             'type'  => 'custom_html',
             'value' => '<p class="font-weight-bold mb-2">More than 50 minutes in an hour</p>',
             'wrapper' => [
@@ -1743,7 +1988,7 @@ class AssessmentCrudController extends CrudController
         ]);
 
         CRUD::addField([
-            'name'  => 'question_23',
+            'name'  => 'vibration_question_1',
             'label' => false,
             'type'        => 'select_from_array',
             'options'     => [0 => 'Not applicable', 1 => 'No', 2 => 'Yes'],
@@ -1752,6 +1997,10 @@ class AssessmentCrudController extends CrudController
             'wrapper' => [
                 'class' => 'form-group d-flex align-self-start col-md-2'
             ],
+            'attributes' => [
+                'id' => 'vibration_question_1',
+                'name' => 'vibration_question_1',
+            ],
             'tab' => 'Vibration'
         ]);
 
@@ -1759,7 +2008,7 @@ class AssessmentCrudController extends CrudController
 
 
         CRUD::addField([
-            'name'  => 'repetitive_motion_question_24a',
+            'name'  => 'vibration_subheader_2a',
             'type'  => 'custom_html',
             'value' => '<p class="font-weight-bold mb-2"></p>',
             'wrapper' => [
@@ -1768,7 +2017,7 @@ class AssessmentCrudController extends CrudController
             'tab' => 'Vibration'
         ]);
         CRUD::addField([
-            'name' => 'repetitive_motion_question_24b',
+            'name' => 'vibration_subheader_2b',
             'type'  => 'custom_html',
             'value' => '<p class="font-weight-bold mb-2">Work using power tools (ie: battery powered/ electrical pneumatic/ hydraulic) <span class="text-decoration-underline">with</span> PPE*</p>',
             'wrapper' => [
@@ -1777,7 +2026,7 @@ class AssessmentCrudController extends CrudController
             'tab' => 'Vibration'
         ]);
         CRUD::addField([
-            'name'  => 'repetitive_motion_question_24c',
+            'name'  => 'vibration_subheader_2c',
             'type'  => 'custom_html',
             'value' => '<p class="font-weight-bold mb-2">More than 5 hours in 8 hours shift work</p>',
             'wrapper' => [
@@ -1787,7 +2036,7 @@ class AssessmentCrudController extends CrudController
         ]);
 
         CRUD::addField([
-            'name'  => 'question_24',
+            'name'  => 'vibration_question_2',
             'label' => false,
             'type'        => 'select_from_array',
             'options'     => [0 => 'Not applicable', 1 => 'No', 2 => 'Yes'],
@@ -1795,6 +2044,10 @@ class AssessmentCrudController extends CrudController
             'default'     => 0,
             'wrapper' => [
                 'class' => 'form-group d-flex align-self-start col-md-2'
+            ],
+            'attributes' => [
+                'id' => 'vibration_question_2',
+                'name' => 'vibration_question_2',
             ],
             'tab' => 'Vibration'
         ]);
@@ -1807,7 +2060,7 @@ class AssessmentCrudController extends CrudController
 
 
         CRUD::addField([
-            'name'  => 'repetitive_motion_question_25a',
+            'name'  => 'vibration_subheader_3a',
             'type'  => 'custom_html',
             'value' => '<p class="font-weight-bold mb-2">Whole body vibration</p>',
             'wrapper' => [
@@ -1816,7 +2069,7 @@ class AssessmentCrudController extends CrudController
             'tab' => 'Vibration'
         ]);
         CRUD::addField([
-            'name' => 'repetitive_motion_question_25b',
+            'name' => 'vibration_subheader_3b',
             'type'  => 'custom_html',
             'value' => '<p class="font-weight-bold mb-2">Work invloving exposure to whole body vibration</p>',
             'wrapper' => [
@@ -1825,7 +2078,7 @@ class AssessmentCrudController extends CrudController
             'tab' => 'Vibration'
         ]);
         CRUD::addField([
-            'name'  => 'repetitive_motion_question_25c',
+            'name'  => 'vibration_subheader_3c',
             'type'  => 'custom_html',
             'value' => '<p class="font-weight-bold mb-2">More than 5 hours in 8 hours shift work</p>',
             'wrapper' => [
@@ -1835,7 +2088,7 @@ class AssessmentCrudController extends CrudController
         ]);
 
         CRUD::addField([
-            'name'  => 'question_25',
+            'name'  => 'vibration_question_3',
             'label' => false,
             'type'        => 'select_from_array',
             'options'     => [0 => 'Not applicable', 1 => 'No', 2 => 'Yes'],
@@ -1844,6 +2097,10 @@ class AssessmentCrudController extends CrudController
             'wrapper' => [
                 'class' => 'form-group d-flex align-self-start col-md-2'
             ],
+            'attributes' => [
+                'id' => 'vibration_question_3',
+                'name' => 'vibration_question_3',
+            ],
             'tab' => 'Vibration'
         ]);
 
@@ -1855,7 +2112,7 @@ class AssessmentCrudController extends CrudController
 
 
         CRUD::addField([
-            'name'  => 'repetitive_motion_question_26a',
+            'name'  => 'vibration_subheader_4a',
             'type'  => 'custom_html',
             'value' => '<p class="font-weight-bold mb-2"></p>',
             'wrapper' => [
@@ -1864,7 +2121,7 @@ class AssessmentCrudController extends CrudController
             'tab' => 'Vibration'
         ]);
         CRUD::addField([
-            'name' => 'repetitive_motion_question_26b',
+            'name' => 'vibration_subheader_4b',
             'type'  => 'custom_html',
             'value' => '<p class="font-weight-bold mb-2">Work involving exposure to whole body vibration combined employee complaint of excessive body shaking</p>',
             'wrapper' => [
@@ -1873,7 +2130,7 @@ class AssessmentCrudController extends CrudController
             'tab' => 'Vibration'
         ]);
         CRUD::addField([
-            'name'  => 'repetitive_motion_question_26c',
+            'name'  => 'vibration_subheader_4c',
             'type'  => 'custom_html',
             'value' => '<p class="font-weight-bold mb-2">More than 3 hours in 8 hours shift work</p>',
             'wrapper' => [
@@ -1883,7 +2140,7 @@ class AssessmentCrudController extends CrudController
         ]);
 
         CRUD::addField([
-            'name'  => 'question_26',
+            'name'  => 'vibration_question_4',
             'label' => false,
             'type'        => 'select_from_array',
             'options'     => [0 => 'Not applicable', 1 => 'No', 2 => 'Yes'],
@@ -1892,8 +2149,46 @@ class AssessmentCrudController extends CrudController
             'wrapper' => [
                 'class' => 'form-group d-flex align-self-start col-md-2'
             ],
+            'attributes' => [
+                'id' => 'vibration_question_4',
+                'name' => 'vibration_question_4',
+            ],
             'tab' => 'Vibration'
         ]);
+
+
+
+        CRUD::addField([
+            'name'  => 'vibration_spacer2',
+            'type'  => 'custom_html',
+            'value' => '&nbsp;',
+            'wrapper' => [
+                'class' => 'form-group col-md-10',
+            ],
+            'tab' => 'Vibration'
+        ]);
+        CRUD::addField([
+            'name'  => 'vibration_result',
+            'label' => false,
+            'type'        => 'number',
+            'attributes' => [
+                'readonly' => true
+            ],
+            'allows_null' => false,
+            'default'     => 0,
+            'wrapper' => [
+                'class' => 'form-group d-flex align-self-start col-md-2'
+            ],
+            'attributes' => [
+                'id' => 'vibration_result',
+                'name' => 'vibration_result',
+            ],
+            'tab' => 'Vibration'
+        ]);
+
+
+
+
 
 
 
@@ -1944,7 +2239,7 @@ class AssessmentCrudController extends CrudController
 
 
         CRUD::addField([
-            'name'  => 'lighting_question_27a',
+            'name'  => 'lighting_subheader_1a',
             'type'  => 'custom_html',
             'value' => '<p class="font-weight-bold mb-10">Inadequate lighting</p>',
             'wrapper' => [
@@ -1955,7 +2250,7 @@ class AssessmentCrudController extends CrudController
 
 
         CRUD::addField([
-            'name'  => 'question_27',
+            'name'  => 'lighting_question_1',
             'label' => false,
             'type'        => 'select_from_array',
             'options'     => [0 => 'Not applicable', 1 => 'No', 2 => 'Yes'],
@@ -1963,6 +2258,40 @@ class AssessmentCrudController extends CrudController
             'default'     => 0,
             'wrapper' => [
                 'class' => 'form-group d-flex align-self-start col-md-2'
+            ],
+            'attributes' => [
+                'id' => 'lighting_question_1',
+                'name' => 'lighting_question_1',
+            ],
+            'tab' => 'Lighting'
+        ]);
+
+
+
+        CRUD::addField([
+            'name'  => 'lighting_spacer2',
+            'type'  => 'custom_html',
+            'value' => '&nbsp;',
+            'wrapper' => [
+                'class' => 'form-group col-md-10',
+            ],
+            'tab' => 'Lighting'
+        ]);
+        CRUD::addField([
+            'name'  => 'lighting_result',
+            'label' => false,
+            'type'        => 'number',
+            'attributes' => [
+                'readonly' => true
+            ],
+            'allows_null' => false,
+            'default'     => 0,
+            'wrapper' => [
+                'class' => 'form-group d-flex align-self-start col-md-2'
+            ],
+            'attributes' => [
+                'id' => 'lighting_result',
+                'name' => 'lighting_result',
             ],
             'tab' => 'Lighting'
         ]);
@@ -2003,7 +2332,7 @@ class AssessmentCrudController extends CrudController
 
 
         CRUD::addField([
-            'name'  => 'temperature_question_28a',
+            'name'  => 'temperature_subheader_1a',
             'type'  => 'custom_html',
             'value' => '<p class="font-weight-bold mb-10">Extreme temperature (hot/ cold)</p>',
             'wrapper' => [
@@ -2014,7 +2343,7 @@ class AssessmentCrudController extends CrudController
 
 
         CRUD::addField([
-            'name'  => 'question_28',
+            'name'  => 'temperature_question_1',
             'label' => false,
             'type'        => 'select_from_array',
             'options'     => [0 => 'Not applicable', 1 => 'No', 2 => 'Yes'],
@@ -2023,12 +2352,43 @@ class AssessmentCrudController extends CrudController
             'wrapper' => [
                 'class' => 'form-group d-flex align-self-start col-md-2'
             ],
+            'attributes' => [
+                'id' => 'temperature_question_1',
+                'name' => 'temperature_question_1',
+            ],
             'tab' => 'Temperature'
         ]);
 
 
 
 
+        CRUD::addField([
+            'name'  => 'temperature_spacer2',
+            'type'  => 'custom_html',
+            'value' => '&nbsp;',
+            'wrapper' => [
+                'class' => 'form-group col-md-10',
+            ],
+            'tab' => 'Temperature'
+        ]);
+        CRUD::addField([
+            'name'  => 'temperature_result',
+            'label' => false,
+            'type'        => 'number',
+            'attributes' => [
+                'readonly' => true
+            ],
+            'allows_null' => false,
+            'default'     => 0,
+            'wrapper' => [
+                'class' => 'form-group d-flex align-self-start col-md-2'
+            ],
+            'attributes' => [
+                'id' => 'temperature_result',
+                'name' => 'temperature_result',
+            ],
+            'tab' => 'Temperature'
+        ]);
 
 
 
@@ -2068,7 +2428,7 @@ class AssessmentCrudController extends CrudController
 
 
         CRUD::addField([
-            'name'  => 'ventilation_question_29a',
+            'name'  => 'ventilation_subheader_1a',
             'type'  => 'custom_html',
             'value' => '<p class="font-weight-bold mb-10">Inadequate air ventilation</p>',
             'wrapper' => [
@@ -2079,7 +2439,7 @@ class AssessmentCrudController extends CrudController
 
 
         CRUD::addField([
-            'name'  => 'question_29',
+            'name'  => 'ventilation_question_1',
             'label' => false,
             'type'        => 'select_from_array',
             'options'     => [0 => 'Not applicable', 1 => 'No', 2 => 'Yes'],
@@ -2088,12 +2448,45 @@ class AssessmentCrudController extends CrudController
             'wrapper' => [
                 'class' => 'form-group d-flex align-self-start col-md-2'
             ],
+            'attributes' => [
+                'id' => 'ventilation_question_1',
+                'name' => 'ventilation_question_1',
+            ],
             'tab' => 'Ventilation'
         ]);
 
 
 
 
+
+
+        CRUD::addField([
+            'name'  => 'ventilation_spacer2',
+            'type'  => 'custom_html',
+            'value' => '&nbsp;',
+            'wrapper' => [
+                'class' => 'form-group col-md-10',
+            ],
+            'tab' => 'Ventilation'
+        ]);
+        CRUD::addField([
+            'name'  => 'ventilation_result',
+            'label' => false,
+            'type'        => 'number',
+            'attributes' => [
+                'readonly' => true
+            ],
+            'allows_null' => false,
+            'default'     => 0,
+            'wrapper' => [
+                'class' => 'form-group d-flex align-self-start col-md-2'
+            ],
+            'attributes' => [
+                'id' => 'ventilation_result',
+                'name' => 'ventilation_result',
+            ],
+            'tab' => 'Ventilation'
+        ]);
 
 
 
@@ -2130,7 +2523,7 @@ class AssessmentCrudController extends CrudController
 
 
         CRUD::addField([
-            'name'  => 'noise_question_30a',
+            'name'  => 'noise_subheader_1a',
             'type'  => 'custom_html',
             'value' => '<p class="font-weight-bold mb-10">Noise exposure above Permissible Exposure Limit (PEL) (based on previous reports or measurement)</p>',
             'wrapper' => [
@@ -2141,7 +2534,7 @@ class AssessmentCrudController extends CrudController
 
 
         CRUD::addField([
-            'name'  => 'question_30',
+            'name'  => 'noise_question_1',
             'label' => false,
             'type'        => 'select_from_array',
             'options'     => [0 => 'Not applicable', 1 => 'No', 2 => 'Yes'],
@@ -2150,12 +2543,16 @@ class AssessmentCrudController extends CrudController
             'wrapper' => [
                 'class' => 'form-group d-flex align-self-start col-md-2'
             ],
+            'attributes' => [
+                'id' => 'noise_question_1',
+                'name' => 'noise_question_1',
+            ],
             'tab' => 'Noise'
         ]);
 
 
         CRUD::addField([
-            'name'  => 'noise_question_31a',
+            'name'  => 'noise_subheader_2a',
             'type'  => 'custom_html',
             'value' => '<p class="font-weight-bold mb-10">Exposure to annoying or excessive noise during working hours</p>',
             'wrapper' => [
@@ -2166,7 +2563,7 @@ class AssessmentCrudController extends CrudController
 
 
         CRUD::addField([
-            'name'  => 'question_31',
+            'name'  => 'noise_question_2',
             'label' => false,
             'type'        => 'select_from_array',
             'options'     => [0 => 'Not applicable', 1 => 'No', 2 => 'Yes'],
@@ -2174,6 +2571,40 @@ class AssessmentCrudController extends CrudController
             'default'     => 0,
             'wrapper' => [
                 'class' => 'form-group d-flex align-self-start col-md-2'
+            ],
+            'attributes' => [
+                'id' => 'noise_question_2',
+                'name' => 'noise_question_2',
+            ],
+            'tab' => 'Noise'
+        ]);
+
+
+
+        CRUD::addField([
+            'name'  => 'noise_spacer2',
+            'type'  => 'custom_html',
+            'value' => '&nbsp;',
+            'wrapper' => [
+                'class' => 'form-group col-md-10',
+            ],
+            'tab' => 'Noise'
+        ]);
+        CRUD::addField([
+            'name'  => 'noise_result',
+            'label' => false,
+            'type'        => 'number',
+            'attributes' => [
+                'readonly' => true
+            ],
+            'allows_null' => false,
+            'default'     => 0,
+            'wrapper' => [
+                'class' => 'form-group d-flex align-self-start col-md-2'
+            ],
+            'attributes' => [
+                'id' => 'noise_result',
+                'name' => 'noise_result',
             ],
             'tab' => 'Noise'
         ]);
@@ -2215,7 +2646,7 @@ class AssessmentCrudController extends CrudController
 
 
         CRUD::setFromDb(); // set fields from db columns.
-
+        CRUD::setCreateView('vendor.backpack.crud.custom.assessment.create');
         /**
          * Fields can be defined using the fluent syntax:
          * - CRUD::field('price')->type('number');
@@ -2233,8 +2664,52 @@ class AssessmentCrudController extends CrudController
         $this->setupCreateOperation();
     }
 
-    public function assessmentPrint(Request $request)
+    public function export(Request $request)
     {
-        
+        // try {
+        $collection = collect();
+        // dd($request->all());
+        // retrieve data operation
+        if (
+            isset($request->report_id) &&
+            ($request->report_id == 'assessment_pdf_001' || $request->report_id == 'assessment_excel_001')
+        ) {
+            $collection = Assessment::find($request->assessment_id);
+
+            $request->merge([
+                'view' => 'reports.assessment_rpt_001',
+                'titleReport' => __('Assessment Report'),
+            ]);
+            // dd("test" . $collection);
+        }
+        // report type operation
+        if ($request->report_id == 'assessment_pdf_001' || $request->report_id == 'assessment_pdf_002') {
+            $request->merge([
+                'reportType' => 'pdf',
+            ]);
+            $pdf = SnappyPdf::loadView($request['view'], [
+                'data' => $collection,
+                'request' => $request,
+                'imageLink' => 'data:image/png;base64,' . base64_encode(file_get_contents('../public/favicon.ico')),
+            ]);
+
+            $pdf->setPaper('a4', 'portrait')
+                ->setOption('footer-right', '[page]')
+                ->setOrientation('portrait');
+            return $pdf->inline('Expense Report -' . now() . '.pdf');
+        }
+        dd($request->all());
+
+        // elseif ($request->report_id == 'assessment_excel_001' || $request->report_id == 'ageDebtor_excel_002') {
+        //     $request->merge([
+        //         'reportType' => 'xlsx',
+        //     ]);
+        //     return Excel::download(new ExcelExport($request, $collection), 'Assessment Report.xlsx');
+        // } else {
+        //     return redirect()->back()->with('error');
+        // }
+        // } catch (\Exception $e) {
+        //     return redirect()->back()->with('error', $e->getMessage());
+        // }
     }
 }

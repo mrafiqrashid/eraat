@@ -6,13 +6,19 @@
     <ul class="dropdown-menu" aria-labelledby="print-BTN">
         @foreach ($print_BTN as $key => $value)
         <li><a class="dropdown-item report_id_list" href="#" data-value="{{ $value['data-value']}}"
-                data-value2="{{ $value['data-value2']}}">{{ $value['display']}}</a></li>
+                data-value2="{{ $value['data-value2']}}" assessment_id="{{ $value['assessment_id']}}">{{
+                $value['display']}}</a></li>
         @endforeach
 
     </ul>
 </div>
+
+{{-- <a onclick="Swal.fire('Print Clicked!')" class="btn btn-sm btn-primary">Print</a> --}}
 @push('after_scripts')
+{{-- <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> --}}
 <script>
+    // import Swal from 'sweetalert2/dist/sweetalert2.js'
+    // import 'sweetalert2/src/sweetalert2.scss'
     document.addEventListener('DOMContentLoaded', function() {
 
 
@@ -23,10 +29,10 @@
             report_id_list_input.forEach(item => {
                 item.addEventListener('click', function(e) {
                     e.preventDefault(); // Prevent default link behavior
-
                     // Get the value from data-value attribute
                     const report_id = this.getAttribute('data-value');
                     const report_title = this.getAttribute('data-value2');
+                    const assessment_id = this.getAttribute('assessment_id');
 
                     // Show confirmation dialog
                     Swal.fire({
@@ -39,6 +45,7 @@
                         confirmButtonText: 'Yes, print it!'
                     }).then((result) => {
                         if (result.isConfirmed) {
+                            console.log('confirm');
                             // Create a form dynamically
                             const form = document.createElement('form');
                             form.method = 'POST';
@@ -59,6 +66,12 @@
                             reportTypeInput.name = 'report_id';
                             reportTypeInput.value = report_id;
                             form.appendChild(reportTypeInput);
+
+                            const assessment_idInput = document.createElement('input');
+                            assessment_idInput.type = 'hidden';
+                            assessment_idInput.name = 'assessment_id';
+                            assessment_idInput.value = assessment_id;
+                            form.appendChild(assessment_idInput);
 
                             const params = new URLSearchParams(window.location.search);
                             let paramObject = {};

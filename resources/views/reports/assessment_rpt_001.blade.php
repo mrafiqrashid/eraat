@@ -7,7 +7,7 @@
     @endif
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    @include('vendor.backpack.crud.inc.style_export')
+    {{-- @include('vendor.backpack.crud.inc.style_export') --}}
 </head>
 @php
 use Carbon\Carbon;
@@ -15,7 +15,7 @@ use Carbon\Carbon;
 
 <body>
     {{-- Top title --}}
-    @if ($request['reportType'] == 'pdf')
+    {{-- @if ($request['reportType'] == 'pdf') --}}
     <table class="title_style">
         <tbody>
             <tr>
@@ -30,7 +30,7 @@ use Carbon\Carbon;
         </tbody>
     </table>
 
-    <section class="container-fluid style3">
+    {{-- <section class="container-fluid style3">
         <h3 style="text-align: center; padding: 0px;margin: 0px;">
             {{ $request['titleReport'] ? $request['titleReport'] : ' - ' }}</h3>
         <hr>
@@ -117,7 +117,7 @@ use Carbon\Carbon;
                     <td><strong>{{ number_format($data->sum('pending_payment'), 2) }}</strong></td>
                 </tr>
         </tbody>
-    </table>
+    </table> --}}
 
 
     <p>Created in MKH Mart. Printed date : {{ now()->format('d-m-Y') }}</p>
