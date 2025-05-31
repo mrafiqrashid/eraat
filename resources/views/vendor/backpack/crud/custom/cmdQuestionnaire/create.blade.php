@@ -1,8 +1,8 @@
 @extends($crud->getCurrentOperation() == 'create' ? 'vendor.backpack.crud.create' : 'vendor.backpack.crud.edit')
 @section('after_scripts')
-@parent
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
+    @parent
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
 
             function updateTotalScore() {
                 const neckScore = parseFloat(document.getElementById('neck_score')?.value || '0');
@@ -44,7 +44,7 @@
                     lowerLegLeftScore +
                     footRightScore +
                     footLeftScore;
-                const totalField = document.getElementById('CMDQuestionnaire_totalScore');
+                const totalField = document.getElementById('cmdQuestionnaire_totalScore');
                 if (totalField) {
                     totalField.value = total.toFixed(1);
 
@@ -281,5 +281,5 @@
                 setupMusculoskeletalLogic('foot_left');
             }, 100);
         });
-</script>
+    </script>
 @endsection
