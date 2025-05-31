@@ -1,8 +1,14 @@
 FROM php:8.2.0-apache
 WORKDIR /var/www/html
 
-# Mod Rewrite
-RUN a2enmod rewrite
+# Mod Rewrite and other Apache configurations
+RUN a2enmod rewrite headers
+RUN echo "Listen 80" > /etc/apache2/ports.conf
+RUN sed -i 's!/var/www/html!/var/www/html/public!g' /etc/apache2/sites-available/000-default.conf
+RUN echo "<Directory /var/www/html/public>\n\
+    AllowOverride All\n\
+    Require all granted\n\
+</Directory>" >> /etc/apache2/apache2.conf
 
 # Linux Libraries (including wkhtmltopdf dependencies)
 RUN apt-get update -y && apt-get install -y \
@@ -41,7 +47,6 @@ RUN wget https://github.com/wkhtmltopdf/packaging/releases/download/0.12.6.1-3/w
     && apt-get install -f -y \
     && rm wkhtmltox_0.12.6.1-3.bullseye_amd64.deb
 
-
 RUN wkhtmltopdf --version
 
 # Install Composer
@@ -58,7 +63,15 @@ RUN docker-php-ext-configure gd --enable-gd --with-freetype --with-jpeg \
 RUN chown -R www-data:www-data /var/www/html \
     && chmod -R 755 /var/www/html
 
-# Enable Apache modules
-RUN a2enmod headers
-
 EXPOSE 80
+
+# Copy existing application directory contents
+COPY . .
+
+# Install PHP dependencies
+RUN composer install --optimize-autoloader --no-dev
+
+# Generate application key
+RUN php artisan key:generate
+
+CMD ["apache2-foreground"]

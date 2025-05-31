@@ -1,14 +1,12 @@
 services:
     laravel.test:
         build:
-            # php version 8.2
             context: ./vendor/laravel/sail/runtimes/8.2
             dockerfile: Dockerfile
             args:
                 WWWGROUP: '${WWWGROUP:-1000}'
                 WWWUSER: '${WWWUSER:-1000}'
-        # php version 8.2
-        image: 'sail-8.2/app'
+        image: laravelsail/php82-composer
         extra_hosts:
             - 'host.docker.internal:host-gateway'
         ports:
@@ -53,15 +51,14 @@ services:
     phpmyadmin:
         image: phpmyadmin/phpmyadmin
         ports:
-            - 8080:80
+            - '8080:80'
         environment:
             PMA_HOST: mysql
-            MYSQL_ROOT_PASSWORD: '${DB_PASSWORD}'  # use the actual .env value
+            MYSQL_ROOT_PASSWORD: '${DB_PASSWORD}'
         networks:
             - sail
 networks:
     sail:
-        # driver: bridge
         external: true
 volumes:
     sail-mysql:
