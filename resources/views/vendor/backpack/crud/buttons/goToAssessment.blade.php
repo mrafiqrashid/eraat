@@ -5,3 +5,6 @@
         Assessment
     </button>
 </form>
+<script>
+    console.log("Vite is working!");
+</script>

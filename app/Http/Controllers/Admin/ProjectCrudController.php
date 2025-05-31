@@ -46,6 +46,31 @@ class ProjectCrudController extends CrudController
      */
     protected function setupListOperation()
     {
+        view()->share([
+            'goToAddRecord' => [
+                'list1' => [
+                    'data1' => 'employee',
+                    'display' => 'Employee',
+                ],
+                'list2' => [
+                    'data1' => 'task',
+                    'display' => 'Task',
+                ],
+                'list3' => [
+                    'data1' => 'mdsForm',
+                    'display' => 'Appendix 1',
+                ],
+                'list4' => [
+                    'data1' => 'cmdQuestionnaire',
+                    'display' => 'Appendix 3',
+                ],
+                'list5' => [
+                    'data1' => 'ieraChecklist',
+                    'display' => 'Appendix 6',
+                ],
+            ],
+        ]);
+        CRUD::button('goToAddRecord')->stack('line')->view('crud::buttons.goToAddRecord')->position('beginning');
 
         CRUD::setFromDb(); // set columns from db columns.
         CRUD::column([
@@ -60,9 +85,10 @@ class ProjectCrudController extends CrudController
         ]);
         CRUD::removeColumn('status_id');
         CRUD::removeColumn('created_by');
-        CRUD::addButtonFromView('line', 'goToAssessment', 'goToAssessment', 'beginning');
-        CRUD::addButtonFromView('line', 'goToTask', 'goToTask', 'beginning');
-        CRUD::addButtonFromView('line', 'goToAssessee', 'goToAssessee', 'beginning');
+        // CRUD::addButtonFromView('line', 'goToAssessment', 'goToAssessment', 'beginning');
+        // CRUD::addButtonFromView('line', 'goToMDSForm', 'goToMDSForm', 'beginning');
+        // CRUD::addButtonFromView('line', 'goToTask', 'goToTask', 'beginning');
+        // CRUD::addButtonFromView('line', 'goToAssessee', 'goToAssessee', 'beginning');
         /**
          * Columns can be defined using the fluent syntax:
          * - CRUD::column('price')->type('number');
@@ -176,30 +202,16 @@ class ProjectCrudController extends CrudController
         // Store project_id in session or use as needed
         session(['filtered_project_id' => ($request->project_id ?? 0)]);
 
-        // Redirect to the car list page
-        return view('vendor.backpack.crud.custom.project.more');
-    }
-
-    public function taskList(Request $request)
-    {
-        // Store project_id in session or use as needed
-        session(['filtered_project_id' => ($request->project_id ?? 0)]);
-
-        // Redirect to the car list page
-        return redirect()->route('task.index');
-    }
-
-    public function assesseeList(Request $request)
-    {
-        // Store project_id in session or use as needed
-        session(['filtered_project_id' => ($request->project_id ?? 0)]);
-
-        // Redirect to the car list page
-        return redirect()->route('assessee.index');
-    }
-    public function assessmentList(Request $request)
-    {
-        session(['filtered_project_id' => ($request->project_id ?? 0)]);
-        return redirect()->route('assessment.index');
+        if ($request->selected_action == 'task') {
+            return redirect()->route('task.index');
+        } elseif ($request->selected_action == 'employee') {
+            return redirect()->route('employee.index');
+        } elseif ($request->selected_action == 'mdsForm') {
+            return redirect()->route('mdsForm.index');
+        } elseif ($request->selected_action == 'cmdQuestionnaire') {
+            return redirect()->route('cmdQuestionnaire.index');
+        } elseif ($request->selected_action == 'ieraChecklist') {
+            return redirect()->route('ieraChecklist.index');
+        }
     }
 }

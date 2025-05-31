@@ -39,6 +39,16 @@ class Race extends Model
     {
         return $this->hasMany(Assessee::class);
     }
+    public function employees()
+    {
+        return $this->hasMany(Employee::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'created_by');
+        // If your foreign key isn't 'user_id', you need to specify it (like 'created_by')
+    }
 
 
     /*

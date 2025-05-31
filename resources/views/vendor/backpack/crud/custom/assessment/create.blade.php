@@ -1,5 +1,7 @@
 @extends('vendor.backpack.crud.create')
-@push('after_scripts')
+<script>
+    console.log("Vite is working!");
+</script>
 <script>
     function updateAPResult() {
             let ap_count = 0;
@@ -99,86 +101,87 @@
             updateSNSWPResult();
         });
 </script>
+
 <script>
     function toggleFEQuestion() {
-            const fe_question_1a = document.getElementById('fe_question_1a');
-            const fe_question_1b = document.getElementById('fe_question_1b');
-            const fe_question_2a = document.getElementById('fe_question_2a');
-            const fe_question_2b = document.getElementById('fe_question_2b');
-            const fe_question_3a = document.getElementById('fe_question_3a');
-            const fe_question_3b = document.getElementById('fe_question_3b');
-            const fe_question_4a = document.getElementById('fe_question_4a');
-            const fe_question_4b = document.getElementById('fe_question_4b');
-            const fe_question_5a = document.getElementById('fe_question_5a');
-            const fe_question_5b = document.getElementById('fe_question_5b');
+            const fe_ll_question_1a = document.getElementById('fe_ll_question_1a');
+            const fe_ll_question_1b = document.getElementById('fe_ll_question_1b');
+            const fe_ll_question_2a = document.getElementById('fe_ll_question_2a');
+            const fe_ll_question_2b = document.getElementById('fe_ll_question_2b');
+            const fe_ll_question_3a = document.getElementById('fe_ll_question_3a');
+            const fe_ll_question_3b = document.getElementById('fe_ll_question_3b');
+            const fe_ll_question_4a = document.getElementById('fe_ll_question_4a');
+            const fe_ll_question_4b = document.getElementById('fe_ll_question_4b');
+            const fe_ll_question_5a = document.getElementById('fe_ll_question_5a');
+            const fe_ll_question_5b = document.getElementById('fe_ll_question_5b');
 
-            if (fe_question_1a && fe_question_1b) {
-                if (fe_question_1a.value === '2') {
-                    fe_question_1b.removeAttribute('readonly');
+            if (fe_ll_question_1a && fe_ll_question_1b) {
+                if (fe_ll_question_1a.value === '2') {
+                    fe_ll_question_1b.removeAttribute('readonly');
                 } else {
-                    fe_question_1b.setAttribute('readonly', true);
-                    fe_question_1b.value = 0; // Optional: Reset value when disabled
+                    fe_ll_question_1b.setAttribute('readonly', true);
+                    fe_ll_question_1b.value = 0; // Optional: Reset value when disabled
                 }
             }
-            if (fe_question_2a && fe_question_2b) {
-                if (fe_question_2a.value === '2') {
-                    fe_question_2b.removeAttribute('readonly');
+            if (fe_ll_question_2a && fe_ll_question_2b) {
+                if (fe_ll_question_2a.value === '2') {
+                    fe_ll_question_2b.removeAttribute('readonly');
                 } else {
-                    fe_question_2b.setAttribute('readonly', true);
-                    fe_question_2b.value = 0; // Optional: Reset value when disabled
+                    fe_ll_question_2b.setAttribute('readonly', true);
+                    fe_ll_question_2b.value = 0; // Optional: Reset value when disabled
                 }
             }
-            if (fe_question_3a && fe_question_3b) {
-                if (fe_question_3a.value === '2') {
-                    fe_question_3b.removeAttribute('readonly');
+            if (fe_ll_question_3a && fe_ll_question_3b) {
+                if (fe_ll_question_3a.value === '2') {
+                    fe_ll_question_3b.removeAttribute('readonly');
                 } else {
-                    fe_question_3b.setAttribute('readonly', true);
-                    fe_question_3b.value = 0; // Optional: Reset value when disabled
+                    fe_ll_question_3b.setAttribute('readonly', true);
+                    fe_ll_question_3b.value = 0; // Optional: Reset value when disabled
                 }
             }
-            if (fe_question_4a && fe_question_4b) {
-                if (fe_question_4a.value === '2') {
-                    fe_question_4b.removeAttribute('readonly');
+            if (fe_ll_question_4a && fe_ll_question_4b) {
+                if (fe_ll_question_4a.value === '2') {
+                    fe_ll_question_4b.removeAttribute('readonly');
                 } else {
-                    fe_question_4b.setAttribute('readonly', true);
-                    fe_question_4b.value = 0; // Optional: Reset value when disabled
+                    fe_ll_question_4b.setAttribute('readonly', true);
+                    fe_ll_question_4b.value = 0; // Optional: Reset value when disabled
                 }
             }
-            if (fe_question_5a && fe_question_5b) {
-                if (fe_question_5a.value === '2') {
-                    fe_question_5b.removeAttribute('readonly');
+            if (fe_ll_question_5a && fe_ll_question_5b) {
+                if (fe_ll_question_5a.value === '2') {
+                    fe_ll_question_5b.removeAttribute('readonly');
                 } else {
-                    fe_question_5b.setAttribute('readonly', true);
-                    fe_question_5b.value = 0; // Optional: Reset value when disabled
+                    fe_ll_question_5b.setAttribute('readonly', true);
+                    fe_ll_question_5b.value = 0; // Optional: Reset value when disabled
                 }
             }
         }
 
         document.addEventListener('DOMContentLoaded', function() {
-            const fe_question_1a = document.getElementById('fe_question_1a');
-            const fe_question_2a = document.getElementById('fe_question_2a');
-            const fe_question_3a = document.getElementById('fe_question_3a');
-            const fe_question_4a = document.getElementById('fe_question_4a');
-            const fe_question_5a = document.getElementById('fe_question_5a');
+            const fe_ll_question_1a = document.getElementById('fe_ll_question_1a');
+            const fe_ll_question_2a = document.getElementById('fe_ll_question_2a');
+            const fe_ll_question_3a = document.getElementById('fe_ll_question_3a');
+            const fe_ll_question_4a = document.getElementById('fe_ll_question_4a');
+            const fe_ll_question_5a = document.getElementById('fe_ll_question_5a');
 
-            if (fe_question_1a) {
-                fe_question_1a.addEventListener('change', toggleFEQuestion);
+            if (fe_ll_question_1a) {
+                fe_ll_question_1a.addEventListener('change', toggleFEQuestion);
                 toggleFEQuestion();
             }
-            if (fe_question_2a) {
-                fe_question_2a.addEventListener('change', toggleFEQuestion);
+            if (fe_ll_question_2a) {
+                fe_ll_question_2a.addEventListener('change', toggleFEQuestion);
                 toggleFEQuestion();
             }
-            if (fe_question_3a) {
-                fe_question_3a.addEventListener('change', toggleFEQuestion);
+            if (fe_ll_question_3a) {
+                fe_ll_question_3a.addEventListener('change', toggleFEQuestion);
                 toggleFEQuestion();
             }
-            if (fe_question_4a) {
-                fe_question_4a.addEventListener('change', toggleFEQuestion);
+            if (fe_ll_question_4a) {
+                fe_ll_question_4a.addEventListener('change', toggleFEQuestion);
                 toggleFEQuestion();
             }
-            if (fe_question_5a) {
-                fe_question_5a.addEventListener('change', toggleFEQuestion);
+            if (fe_ll_question_5a) {
+                fe_ll_question_5a.addEventListener('change', toggleFEQuestion);
                 toggleFEQuestion();
             }
         });
@@ -342,4 +345,4 @@
             updateNoiseResult();
         });
 </script>
-@endpush
+{{-- @endpush --}}

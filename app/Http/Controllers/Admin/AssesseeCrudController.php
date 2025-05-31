@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Middleware\CheckProjectSession;
 use App\Http\Requests\AssesseeRequest;
 use App\Models\EducationLevel;
 use App\Models\MaritialStatus;
@@ -37,6 +38,12 @@ class AssesseeCrudController extends CrudController
         CRUD::setEntityNameStrings('assessee', 'assessees');
     }
 
+    public function __construct()
+    {
+        parent::__construct();
+        $this->middleware(CheckProjectSession::class);
+    }
+
     /**
      * Define what happens when the List operation is loaded.
      * 
@@ -45,6 +52,8 @@ class AssesseeCrudController extends CrudController
      */
     protected function setupListOperation()
     {
+
+        CRUD::button('back')->stack('top')->view('crud::buttons.goToProject')->position('end');
         CRUD::setFromDb(); // set columns from db columns.
         CRUD::removeColumn('passport_no');
         CRUD::removeColumn('created_by');
@@ -113,9 +122,11 @@ class AssesseeCrudController extends CrudController
      */
     protected function setupCreateOperation()
     {
+        if (session('filtered_project_id') == null) {
+            return redirect()->route('project.index');
+        }
         CRUD::setCreateView('vendor.backpack.assessee.create');
         CRUD::setValidation(AssesseeRequest::class);
-        // CRUD::setFromDb(); // set fields from db columns.
         CRUD::addField([
             'name' => 'project_description',
             'label' => 'Project',
@@ -131,6 +142,23 @@ class AssesseeCrudController extends CrudController
         ]);
         CRUD::field([
             'name' => 'name',
+            'wrapper' => [
+                'class' => 'form-group col-md-8',
+            ]
+        ]);
+        CRUD::field([
+            'name' => 'email',
+            'type' => 'email',
+            'wrapper' => [
+                'class' => 'form-group col-md-2',
+            ]
+        ]);
+        CRUD::field([
+            'name' => 'contact_no',
+            'type' => 'text',
+            'wrapper' => [
+                'class' => 'form-group col-md-2',
+            ]
         ]);
         CRUD::field([
             'name' => 'employee_no',

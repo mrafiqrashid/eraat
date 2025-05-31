@@ -23,3 +23,8 @@
                         link="https://example.com" /> --}}
         </x-theme-tabler::menu-dropdown-column>
 </x-backpack::menu-dropdown>
+{{--
+<x-backpack::menu-item title="MDS forms" icon="la la-question" :link="backpack_url('mdsForm')" /> --}}
+<x-backpack::menu-item title="Employees" icon="la la-question" :link="backpack_url('employee')" />
+<x-backpack::menu-item title="CMD questionnaires" icon="la la-question" :link="backpack_url('cmdQuestionnaire')" />
+<x-backpack::menu-item title="IERA checklists" icon="la la-question" :link="backpack_url('ieraChecklist')" />

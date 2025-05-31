@@ -52,6 +52,11 @@ class Project extends Model
         return $this->hasMany(Assessee::class);
         // If your foreign key isn't 'user_id', you need to specify it (like 'created_by')
     }
+    public function employees()
+    {
+        return $this->hasMany(Employee::class);
+        // If your foreign key isn't 'user_id', you need to specify it (like 'created_by')
+    }
     public function tasks()
     {
         return $this->hasMany(Task::class);

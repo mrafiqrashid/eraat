@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Middleware\CheckProjectSession;
 use App\Http\Requests\TaskRequest;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
@@ -31,7 +32,11 @@ class TaskCrudController extends CrudController
         CRUD::setRoute(config('backpack.base.route_prefix') . '/task');
         CRUD::setEntityNameStrings('task', 'tasks');
     }
-
+    public function __construct()
+    {
+        parent::__construct();
+        $this->middleware(CheckProjectSession::class);
+    }
     /**
      * Define what happens when the List operation is loaded.
      * 
@@ -40,13 +45,14 @@ class TaskCrudController extends CrudController
      */
     protected function setupListOperation()
     {
-        $projectId = session('project_id');
-
+        $projectId = session('filtered_project_id');
         if ($projectId) {
             CRUD::addClause('where', 'project_id', $projectId);
         } else {
             CRUD::addClause('where', 'project_id', 0);
         }
+
+        CRUD::button('back')->stack('top')->view('crud::buttons.goToProject')->position('end');
         CRUD::setFromDb(); // set columns from db columns.
         CRUD::removeColumn('project_id');
         CRUD::removeColumn('created_by');
@@ -84,6 +90,9 @@ class TaskCrudController extends CrudController
      */
     protected function setupCreateOperation()
     {
+        if (session('filtered_project_id') == null) {
+            return redirect()->route('project.index');
+        }
         CRUD::setValidation(TaskRequest::class);
         CRUD::setFromDb(); // set fields from db columns.
         CRUD::field([

@@ -19,13 +19,14 @@ use Carbon\Carbon;
     <table class="title_style">
         <tbody>
             <tr>
-                <td class="column-small"><img src={{ $imageLink }} height="80px" width="80px"></td>
+                {{-- <td class="column-small"><img src={{ $imageLink }} height="80px" width="80px"></td> --}}
                 <td>
-                    <h2 style="text-align: center;">
-                        {{ __('MKH Mart') }}
+                    <h2 style="text-align: start; padding: 0px 10px 0px 10px;">
+                        {{ __('Appenddix 1') }} {{ __('SELF ASSESSMENT MUSCULOSKELETAL PAIN / DISCOMFORT SURVEY FORM')
+                        }}
                     </h2>
                 </td>
-                <td class="column-small"></td>
+                {{-- <td class="column-small"></td> --}}
             </tr>
         </tbody>
     </table>
