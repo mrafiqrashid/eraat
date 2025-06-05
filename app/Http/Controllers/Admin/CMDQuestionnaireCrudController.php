@@ -51,25 +51,10 @@ class CMDQuestionnaireCrudController extends CrudController
     protected function setupListOperation()
     {
         CRUD::button('back')->stack('top')->view('crud::buttons.goToProject')->position('end');
-        view()->share([
-            'print_BTN' => [
-                'list1' => [
-                    'dataValue' => 'cmdQuestionnaire_pdf_001',
-                    'dataValue2' => 'PDF',
-                    'display' => 'Cornell Musculoskeletal Discomfort Questionnaires (PDF)',
-                ],
-                'list2' => [
-                    'dataValue' => 'cmdQuestionnaire_excel_001',
-                    'dataValue2' => 'Excel',
-                    'display' => 'Cornell Musculoskeletal Discomfort Questionnaires (Excel)',
-                ],
-            ],
-            'route' => 'cmdQuestionnaire_export',
-        ]);
+
         CRUD::removeButton('update');
         CRUD::button('check')->stack('line')->view('crud::buttons.check')->position('beginning');
-        CRUD::button('print')->stack('line')->view('crud::buttons.print')->position('beginning');
-        CRUD::orderButtons('line', ['check', 'print', 'show', 'delete']);
+        CRUD::orderButtons('line', ['check', 'show', 'delete']);
 
         CRUD::column([
             'name' => 'project.name',
@@ -98,14 +83,73 @@ class CMDQuestionnaireCrudController extends CrudController
 
     public function setupShowOperation()
     {
-        $this->setupUpdateOperation(); // This loads all update fields
+        $this->setupUpdateOperation();
+        $entry = $this->crud->getCurrentEntry();
+        view()->share([
+            'print_BTN' => [
+                'list1' => [
+                    'dataValue' => 'cmdQuestionnaire_pdf_001',
+                    'dataValue2' => 'PDF',
+                    'display' => 'Cornell Musculoskeletal Discomfort Questionnaires (PDF)',
+                ],
+                'list2' => [
+                    'dataValue' => 'cmdQuestionnaire_excel_001',
+                    'dataValue2' => 'Excel',
+                    'display' => 'Cornell Musculoskeletal Discomfort Questionnaires (Excel)',
+                ],
+            ],
+            'route' => 'cmdQuestionnaire_export',
 
-        // Make all fields read-only
+            'stylePrint_BTN' => 'btn btn-default border border-secondary',
+            'defaultPrint_BTN' => true,
+        ]);
+
         foreach ($this->crud->fields() as $field) {
-            $this->crud->modifyField($field['name'], ['readonly' => true]);
+            $attributes = $field['attributes'] ?? [];
+            if (in_array($field['type'], ['radio', 'select', 'checkbox'])) {
+                $attributes['disabled'] = 'disabled';
+            } else {
+                $attributes['readonly'] = 'readonly';
+            }
+            $value = $entry->{$field['name']} ?? ($field['value'] ?? null);
+            $this->crud->modifyField($field['name'], [
+                'attributes' => $attributes,
+                'value' => $value,
+            ]);
+        }
+        $this->crud->setOperationSetting('view', 'crud::custom_show');
+
+
+
+        CRUD::removeField('employee_id');
+        CRUD::field([
+            'name' => 'employee_name',
+            'type' => 'text',
+            'value' => $entry->employee->name,
+            'attributes' => ['readonly' => true]
+        ]);
+    }
+    public function setupShowOperation2()
+    {
+        $this->setupUpdateOperation();
+
+        // Get the current entry
+        $entry = $this->crud->getCurrentEntry();
+
+        // Modify all fields to be readonly
+        foreach ($this->crud->fields() as $field) {
+            $this->crud->modifyField($field['name'], [
+                'readonly' => true,
+                'value' => $entry->{$field['name']} ?? '',
+            ]);
         }
 
-        $this->crud->setOperationSetting('view', 'crud::custom.cmdQuestionnaire.show');
+        // Make sure fields are available to the view
+        $this->data['entry'] = $entry;
+        $this->data['crud'] = $this->crud;
+        $this->data['fields'] = $this->crud->fields();
+
+        $this->crud->setOperationSetting('view', 'vendor.backpack.crud.custom.cmdQuestionnaire.show');
     }
 
     /**
@@ -154,7 +198,7 @@ class CMDQuestionnaireCrudController extends CrudController
             'type'  => 'custom_html',
             'value' => '<img src="' . asset('images/cmdQuestionnaire/musculoskeletal.png') . '" alt="Illustration" class="img-fluid">',
             'wrapper' => [
-                'class' => 'form-group col-md-12',
+                'class' => 'form-group col-md-12 text-center',
             ],
             'tab' => 'CMD Questionnaire'
         ]);
@@ -241,19 +285,19 @@ class CMDQuestionnaireCrudController extends CrudController
             'type' => 'custom_html',
             'value' => '
             <div class="d-flex flex-wrap justify-content-center align-items-stretch mb-4 gap-2 px-0">
-                <div class="text-justify p-0 border rounded col-12 col-sm-6 col-md-4 col-lg-2">
+                <div class="text-justify p-0 col-12 col-sm-6 col-md-4 col-lg-2">
                     <h5 class="mb-0 small">Never</h5>
                 </div>
-                <div class="text-justify p-0 border rounded col-12 col-sm-6 col-md-4 col-lg-2">
+                <div class="text-justify p-0 col-12 col-sm-6 col-md-4 col-lg-2">
                     <h5 class="mb-0 small">1-2 times last week</h5>
                 </div>
-                <div class="text-justify p-0 border rounded col-12 col-sm-6 col-md-4 col-lg-2">
+                <div class="text-justify p-0 col-12 col-sm-6 col-md-4 col-lg-2">
                     <h5 class="mb-0 small">3-4 times last week</h5>
                 </div>
-                <div class="text-justify p-0 border rounded col-12 col-sm-6 col-md-4 col-lg-2">
+                <div class="text-justify p-0 col-12 col-sm-6 col-md-4 col-lg-2">
                     <h5 class="mb-0 small">Once every day</h5>
                 </div>
-                <div class="text-justify p-0 border rounded col-12 col-sm-6 col-md-4 col-lg-2">
+                <div class="text-justify p-0 col-12 col-sm-6 col-md-4 col-lg-2">
                     <h5 class="mb-0 small">Several times every day</h5>
                 </div>
             </div>
@@ -269,13 +313,13 @@ class CMDQuestionnaireCrudController extends CrudController
             'type' => 'custom_html',
             'value' => '
             <div class="d-flex flex-wrap justify-content-start align-items-stretch mb-4 gap-6">
-                <div class="text-justify p-0 border rounded col-12 col-sm-6 col-md-4 col-lg-2">
+                <div class="text-justify p-0 col-12 col-sm-6 col-md-4 col-lg-2">
                     <h5 class="mb-0 small">Slightly uncomfortable</h5>
                 </div>
-                <div class="text-justify p-0 border rounded col-12 col-sm-6 col-md-4 col-lg-2">
+                <div class="text-justify p-0 col-12 col-sm-6 col-md-4 col-lg-2">
                     <h5 class="mb-0 small">Moderately uncomfortable</h5>
                 </div>
-                <div class="text-justify p-0 border rounded col-12 col-sm-6 col-md-4 col-lg-2">
+                <div class="text-justify p-0 col-12 col-sm-6 col-md-4 col-lg-2">
                     <h5 class="mb-0 small">Very uncomfortable</h5>
                 </div>
             </div>
@@ -292,13 +336,13 @@ class CMDQuestionnaireCrudController extends CrudController
             'type' => 'custom_html',
             'value' => '
             <div class="d-flex flex-wrap justify-content-center align-items-stretch mb-4 gap-4 px-1">
-                <div class="text-justify p-0 border rounded col-12 col-sm-6 col-md-4 col-lg-2">
+                <div class="text-justify p-0 col-12 col-sm-6 col-md-4 col-lg-2">
                     <h5 class="mb-0 small">Not at all</h5>
                 </div>
-                <div class="text-justify p-0 border rounded col-12 col-sm-6 col-md-4 col-lg-2">
+                <div class="text-justify p-0 col-12 col-sm-6 col-md-4 col-lg-2">
                     <h5 class="mb-0 small">Slightly interfered</h5>
                 </div>
-                <div class="text-justify p-0 border rounded col-12 col-sm-6 col-md-4 col-lg-2">
+                <div class="text-justify p-0 col-12 col-sm-6 col-md-4 col-lg-2">
                     <h5 class="mb-0 small">Substantially interfered</h5>
                 </div>
             </div>

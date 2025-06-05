@@ -1,15 +1,17 @@
 <div class="dropdown" style="display:inline;">
-    <button class="btn btn-sm btn-link text-primary dropdown-toggle" type="button" id="print-BTN"
-        data-bs-toggle="dropdown" aria-expanded="false">
+    <button class="{{ $stylePrint_BTN ?? 'btn btn-sm btn-link text-primary dropdown-toggle' }}" type="button"
+        id="print-BTN" data-bs-toggle="dropdown" aria-expanded="false">
         <i class="las la-print"></i> Print
     </button>
     <ul class="dropdown-menu" aria-labelledby="print-BTN">
         @foreach ($print_BTN as $key => $value)
-        <li><a class="dropdown-item report_id_list" href="#" data-value="{{ $value['dataValue'] }}"
-                data-value2="{{ $value['dataValue2'] }}" data-value3="{{ $entry->id }}">{{
-                $value['display'] }}</a></li>
+            <li><a class="dropdown-item report_id_list" href="#" data-value="{{ $value['dataValue'] }}"
+                    data-value2="{{ $value['dataValue2'] }}"
+                    data-value3="{{ $entry->id }}">{{ $value['display'] }}</a></li>
         @endforeach
-
+        @if ($defaultPrint_BTN ?? null)
+            <li><a href="javascript: window.print();" class="dropdown-item">Layout 2</a></li>
+        @endif
     </ul>
 </div>
 

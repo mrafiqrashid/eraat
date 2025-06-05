@@ -58,15 +58,15 @@ class ProjectCrudController extends CrudController
                 ],
                 'list3' => [
                     'data1' => 'mdsForm',
-                    'display' => 'Appendix 1',
+                    'display' => 'Appendix 1 - MDS Forms',
                 ],
                 'list4' => [
                     'data1' => 'cmdQuestionnaire',
-                    'display' => 'Appendix 3',
+                    'display' => 'Appendix 3 - CMD Questionnaire',
                 ],
                 'list5' => [
                     'data1' => 'ieraChecklist',
-                    'display' => 'Appendix 6',
+                    'display' => 'Appendix 6 - IERA Checklist',
                 ],
             ],
         ]);

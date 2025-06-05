@@ -24,11 +24,6 @@ class MDSForm extends Model
     // protected $fillable = [];
     // protected $hidden = [];
     protected $casts = [
-        // 'shoulder_a' => 'boolean',
-        // 'shoulder_b' => 'boolean',
-        // 'upperBack_a' => 'boolean',
-        // 'upperBack_b' => 'boolean',
-
         'neck_a' => 'boolean',
         'neck_b' => 'boolean',
         'shoulder_a' => 'boolean',

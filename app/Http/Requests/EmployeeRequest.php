@@ -26,6 +26,7 @@ class EmployeeRequest extends FormRequest
     {
         return [
             // 'name' => 'required|min:5|max:255'
+            'gender' => 'required'
         ];
     }
 

@@ -57,6 +57,11 @@ class Employee extends Model
         // If your foreign key isn't 'user_id', you need to specify it (like 'created_by')
     }
 
+    public function employee()
+{
+    return $this->belongsTo(Employee::class);
+}
+
     /*
     |--------------------------------------------------------------------------
     | SCOPES
@@ -85,5 +90,14 @@ class Employee extends Model
     public function getMaritialStatusNameAttribute()
     {
         return $this->maritialStatus?->maritial_status; // or whatever your column is
+    }
+    public function getEmployeeWithNoCMDQuestionnaire($projectId = null)
+    {
+        $projectId = $projectId ?? session('filtered_project_id');
+    
+        return static::where('project_id', $projectId)
+            ->whereDoesntHave('cmdQuestionnare')
+            ->pluck('name', 'id')
+            ->toArray();
     }
 }

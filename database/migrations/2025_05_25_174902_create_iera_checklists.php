@@ -29,17 +29,16 @@ return new class extends Migration
             $table->integer('snswp_question_1')->nullable();
             $table->integer('snswp_question_2')->nullable();
             $table->integer('snswp_question_3')->nullable();
-            $table->integer('fe_bc_1_gender')->nullable();
-            $table->boolean('fe_ll_applicable_1a')->default(false);
-            $table->boolean('fe_ll_applicable_1b')->default(false);
-            $table->boolean('fe_ll_applicable_2a')->default(false);
-            $table->boolean('fe_ll_applicable_2b')->default(false);
-            $table->boolean('fe_ll_applicable_3a')->default(false);
-            $table->boolean('fe_ll_applicable_3b')->default(false);
-            $table->boolean('fe_ll_applicable_4a')->default(false);
-            $table->boolean('fe_ll_applicable_4b')->default(false);
-            $table->boolean('fe_ll_applicable_5a')->default(false);
-            $table->boolean('fe_ll_applicable_5b')->default(false);
+            $table->boolean('fe_ll_question_1a_applicable')->default(false);
+            $table->boolean('fe_ll_question_1b_applicable')->default(false);
+            $table->boolean('fe_ll_question_2a_applicable')->default(false);
+            $table->boolean('fe_ll_question_2b_applicable')->default(false);
+            $table->boolean('fe_ll_question_3a_applicable')->default(false);
+            $table->boolean('fe_ll_question_3b_applicable')->default(false);
+            $table->boolean('fe_ll_question_4a_applicable')->default(false);
+            $table->boolean('fe_ll_question_4b_applicable')->default(false);
+            $table->boolean('fe_ll_question_5a_applicable')->default(false);
+            $table->boolean('fe_ll_question_5b_applicable')->default(false);
             $table->decimal('fe_ll_question_1a', 10, 3)->nullable();
             $table->decimal('fe_ll_question_1b', 10, 3)->nullable();
             $table->decimal('fe_ll_question_2a', 10, 3)->nullable();
@@ -70,27 +69,28 @@ return new class extends Migration
             $table->integer('fe_lltbp_question_3b')->nullable();
             $table->integer('fe_lltbp_question_4b')->nullable();
             $table->integer('fe_lltbp_question_5b')->nullable();
-            $table->integer('fe_pp_question_1a')->nullable();
-            $table->decimal('fe_pp_question_1b', 10, 3)->nullable();
-            $table->integer('fe_pp_question_1c')->nullable();
-            $table->integer('fe_pp_question_1d')->nullable();
-            $table->integer('fe_pp_question_1e')->nullable();
-            $table->integer('fe_pp_question_1f')->nullable();
-            $table->integer('fe_pp_question_1g')->nullable();
-            $table->integer('fe_pp_question_2a')->nullable();
-            $table->decimal('fe_pp_question_2b', 10, 3)->nullable();
-            $table->integer('fe_pp_question_2c')->nullable();
-            $table->integer('fe_pp_question_2d')->nullable();
-            $table->integer('fe_pp_question_2e')->nullable();
-            $table->integer('fe_pp_question_2f')->nullable();
-            $table->integer('fe_pp_question_2g')->nullable();
-            $table->integer('fe_hsp_question_1')->nullable();
-            $table->decimal('fe_hsp_question_2', 10, 3)->nullable();
-            $table->integer('fe_c_question_1a')->nullable();
-            $table->integer('fe_c_question_1b')->nullable();
-            $table->integer('fe_c_question_2')->nullable();
-            $table->integer('fe_c_question_3')->nullable();
-            $table->integer('fe_c_question_4')->nullable();
+
+
+            $table->unsignedTinyInteger('fe_pp_question_1')->nullable()->default(null);
+            $table->unsignedTinyInteger('fe_pp_question_2')->nullable()->default(null);
+            $table->unsignedTinyInteger('fe_pp_question_3')->nullable()->default(null);
+            $table->unsignedTinyInteger('fe_pp_question_4')->nullable()->default(null);
+            $table->unsignedTinyInteger('fe_pp_question_5')->nullable()->default(null);
+            $table->string('fe_pp_question_6_sub_1')->nullable();
+            $table->unsignedTinyInteger('fe_pp_question_6')->nullable()->default(null);
+            $table->string('fe_pp_question_7_sub_1')->nullable();
+            $table->unsignedTinyInteger('fe_pp_question_7')->nullable()->default(null);
+
+            $table->string('fe_hsp_question_1_subQuestion_1')->nullable();
+            $table->string('fe_hsp_question_1_subQuestion_2')->nullable();
+            $table->decimal('fe_hsp_question_1_subQuestion_3', 10, 3)->nullable();
+            $table->decimal('fe_hsp_question_1_subQuestion_4', 10, 3)->nullable();
+            $table->unsignedTinyInteger('fe_hsp_question_1')->nullable()->default(null);
+
+            $table->unsignedTinyInteger('fe_c_question_1')->nullable()->default(null);
+            $table->unsignedTinyInteger('fe_c_question_2')->nullable()->default(null);
+            $table->unsignedTinyInteger('fe_c_question_3')->nullable()->default(null);
+            $table->unsignedTinyInteger('fe_c_question_4')->nullable()->default(null);
 
 
 
@@ -114,18 +114,27 @@ return new class extends Migration
 
 
 
-            $table->integer('ap_result')->nullable();
-            $table->integer('snswp_result')->nullable();
-            $table->integer('fe_result')->nullable();
-            $table->integer('rm_result')->nullable();
-            $table->integer('vibration_result')->nullable();
-            $table->integer('lighting_result')->nullable();
-            $table->integer('temperature_result')->nullable();
-            $table->integer('ventilation_result')->nullable();
-            $table->integer('noise_result')->nullable();
+            $table->integer('ap_score')->nullable();
+            $table->integer('snswp_score')->nullable();
+            $table->integer('fe_ll_score')->nullable();
+            $table->integer('fe_rll_score')->nullable();
+            $table->integer('fe_lltbp_score')->nullable();
+            $table->integer('fe_rlltbp_score')->nullable();
+            $table->integer('fe_pp_score')->nullable();
+            $table->integer('fe_hsp_score')->nullable();
+            $table->integer('fe_c_score')->nullable();
+            $table->integer('fe_score')->nullable();
+            $table->integer('rm_score')->nullable();
+            $table->integer('vibration_score')->nullable();
+            $table->integer('lighting_score')->nullable();
+            $table->integer('temperature_score')->nullable();
+            $table->integer('ventilation_score')->nullable();
+            $table->integer('noise_score')->nullable();
+
+            $table->decimal('ieraChecklist_totalScore', 10, 2)->default(0.0);
 
 
-
+            $table->string('fe_bc_1_gender')->nullable();
             $table->foreignId('project_id')->constrained('projects')->onDelete('cascade');
             $table->foreignId('employee_id')->constrained('employees')->onDelete('cascade');
             $table->foreignId('task_id')->constrained('tasks')->onDelete('cascade');

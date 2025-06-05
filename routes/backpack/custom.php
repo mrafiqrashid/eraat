@@ -30,6 +30,7 @@ Route::group([
     Route::crud('mdsForm', 'MDSFormCrudController');
     Route::post('mdsForm/mdsForm_export', 'MDSFormCrudController@export')->name('mdsForm_export');
     Route::crud('employee', 'EmployeeCrudController');
+    Route::post('employee/getGender', 'EmployeeCrudController@getGender')->name('getGender');
     Route::crud('cmdQuestionnaire', 'CMDQuestionnaireCrudController');
     Route::post('cmdQuestionnaire/cmdQuestionnaire_export', 'CMDQuestionnaireCrudController@export')->name('cmdQuestionnaire_export');
     Route::crud('ieraChecklist', 'IERAChecklistCrudController');

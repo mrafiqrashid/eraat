@@ -5,12 +5,15 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Middleware\CheckProjectSession;
 use App\Http\Requests\EmployeeRequest;
 use App\Models\EducationLevel;
+use App\Models\Employee;
 use App\Models\MaritialStatus;
 use App\Models\Project;
 use App\Models\Race;
 use App\Models\User;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 /**
  * Class EmployeeCrudController
@@ -338,5 +341,12 @@ class EmployeeCrudController extends CrudController
     protected function setupUpdateOperation()
     {
         $this->setupCreateOperation();
+    }
+    public function getGender(Request $request)
+    {
+        $gender = Employee::where('id', $request->employee_id)->first(['gender']);
+        Log::info($gender);
+
+        return response()->json($gender);
     }
 }

@@ -1,7 +1,5 @@
 @extends('vendor.backpack.crud.update')
-<script>
-    console.log("Vite is working!");
-</script>
+
 {{-- <script>
     function updateAPResult() {
             let ap_count = 0;
@@ -20,7 +18,7 @@
             const ap_question_12 = document.getElementById('ap_question_12');
             const ap_question_13 = document.getElementById('ap_question_13');
 
-            const ap_result = document.getElementById('ap_result');
+            const ap_score = document.getElementById('ap_score');
 
             if (ap_question_1 && ap_question_1.value === '2') ap_count++;
             if (ap_question_2 && ap_question_2.value === '2') ap_count++;
@@ -36,7 +34,7 @@
             if (ap_question_12 && ap_question_12.value === '2') ap_count++;
             if (ap_question_13 && ap_question_13.value === '2') ap_count++;
 
-            if (ap_result) ap_result.value = ap_count;
+            if (ap_score) ap_score.value = ap_count;
         }
 
         document.addEventListener('DOMContentLoaded', function() {
@@ -79,13 +77,13 @@
             const snswp_question_1 = document.getElementById('snswp_question_1');
             const snswp_question_2 = document.getElementById('snswp_question_2');
             const snswp_question_3 = document.getElementById('snswp_question_3');
-            const snswp_result = document.getElementById('snswp_result');
+            const snswp_score = document.getElementById('snswp_score');
 
             if (snswp_question_1 && snswp_question_1.value === '2') snswp_count++;
             if (snswp_question_2 && snswp_question_2.value === '2') snswp_count++;
             if (snswp_question_3 && snswp_question_3.value === '2') snswp_count++;
 
-            if (snswp_result) snswp_result.value = snswp_count;
+            if (snswp_score) snswp_score.value = snswp_count;
         }
 
         document.addEventListener('DOMContentLoaded', function() {
@@ -195,7 +193,7 @@
             const rm_question_3 = document.getElementById('rm_question_3');
             const rm_question_4 = document.getElementById('rm_question_4');
             const rm_question_5 = document.getElementById('rm_question_5');
-            const rm_result = document.getElementById('rm_result');
+            const rm_score = document.getElementById('rm_score');
 
             if (rm_question_1 && rm_question_1.value === '2') rm_count++;
             if (rm_question_2 && rm_question_2.value === '2') rm_count++;
@@ -203,7 +201,7 @@
             if (rm_question_4 && rm_question_4.value === '2') rm_count++;
             if (rm_question_5 && rm_question_5.value === '2') rm_count++;
 
-            if (rm_result) rm_result.value = rm_count;
+            if (rm_score) rm_score.value = rm_count;
         }
 
         document.addEventListener('DOMContentLoaded', function() {
@@ -231,14 +229,14 @@
             const vibration_question_2 = document.getElementById('vibration_question_2');
             const vibration_question_3 = document.getElementById('vibration_question_3');
             const vibration_question_4 = document.getElementById('vibration_question_4');
-            const vibration_result = document.getElementById('vibration_result');
+            const vibration_score = document.getElementById('vibration_score');
 
             if (vibration_question_1 && vibration_question_1.value === '2') vibration_count++;
             if (vibration_question_2 && vibration_question_2.value === '2') vibration_count++;
             if (vibration_question_3 && vibration_question_3.value === '2') vibration_count++;
             if (vibration_question_4 && vibration_question_4.value === '2') vibration_count++;
 
-            if (vibration_result) vibration_result.value = vibration_count;
+            if (vibration_score) vibration_score.value = vibration_count;
         }
 
         document.addEventListener('DOMContentLoaded', function() {
@@ -262,11 +260,11 @@
 
             const lighting_question_1 = document.getElementById('lighting_question_1');
 
-            const lighting_result = document.getElementById('lighting_result');
+            const lighting_score = document.getElementById('lighting_score');
 
             if (lighting_question_1 && lighting_question_1.value === '2') lighting_count++;
 
-            if (lighting_result) lighting_result.value = lighting_count;
+            if (lighting_score) lighting_score.value = lighting_count;
         }
 
         document.addEventListener('DOMContentLoaded', function() {
@@ -283,11 +281,11 @@
             let temperature_count = 0;
 
             const temperature_question_1 = document.getElementById('temperature_question_1');
-            const temperature_result = document.getElementById('temperature_result');
+            const temperature_score = document.getElementById('temperature_score');
 
             if (temperature_question_1 && temperature_question_1.value === '2') temperature_count++;
 
-            if (temperature_result) temperature_result.value = temperature_count;
+            if (temperature_score) temperature_score.value = temperature_count;
         }
 
         document.addEventListener('DOMContentLoaded', function() {
@@ -304,11 +302,11 @@
             let ventilation_count = 0;
 
             const ventilation_question_1 = document.getElementById('ventilation_question_1');
-            const ventilation_result = document.getElementById('ventilation_result');
+            const ventilation_score = document.getElementById('ventilation_score');
 
             if (ventilation_question_1 && ventilation_question_1.value === '2') ventilation_count++;
 
-            if (ventilation_result) ventilation_result.value = ventilation_count;
+            if (ventilation_score) ventilation_score.value = ventilation_count;
         }
 
         document.addEventListener('DOMContentLoaded', function() {
@@ -326,12 +324,12 @@
 
             const noise_question_1 = document.getElementById('noise_question_1');
             const noise_question_2 = document.getElementById('noise_question_2');
-            const noise_result = document.getElementById('noise_result');
+            const noise_score = document.getElementById('noise_score');
 
             if (noise_question_1 && noise_question_1.value === '2') noise_count++;
             if (noise_question_2 && noise_question_2.value === '2') noise_count++;
 
-            if (noise_result) noise_result.value = noise_count;
+            if (noise_score) noise_score.value = noise_count;
         }
 
         document.addEventListener('DOMContentLoaded', function() {

@@ -51,25 +51,10 @@ class MDSFormCrudController extends CrudController
     protected function setupListOperation()
     {
         CRUD::button('back')->stack('top')->view('crud::buttons.goToProject')->position('end');
-        view()->share([
-            'print_BTN' => [
-                'list1' => [
-                    'dataValue' => 'mdsForm_pdf_001',
-                    'dataValue2' => 'PDF',
-                    'display' => 'Self Assessment Musculoskeletal Pain / Discomfort Survey Form (PDF)',
-                ],
-                'list2' => [
-                    'dataValue' => 'mdsForm_excel_001',
-                    'dataValue2' => 'Excel',
-                    'display' => 'Self Assessment Musculoskeletal Pain / Discomfort Survey Form (Excel)',
-                ],
-            ],
-            'route' => 'mdsForm_export',
-        ]);
+
         CRUD::removeButton('update');
         CRUD::button('check')->stack('line')->view('crud::buttons.check')->position('beginning');
-        CRUD::button('print')->stack('line')->view('crud::buttons.print')->position('beginning');
-        CRUD::orderButtons('line', ['check', 'print', 'show', 'delete']);
+        CRUD::orderButtons('line', ['check', 'show', 'delete']);
 
 
         CRUD::column([
@@ -97,6 +82,56 @@ class MDSFormCrudController extends CrudController
          * Columns can be defined using the fluent syntax:
          * - CRUD::column('price')->type('number');
          */
+    }
+
+
+    public function setupShowOperation()
+    {
+        $this->setupUpdateOperation();
+        $entry = $this->crud->getCurrentEntry();
+        view()->share([
+            'print_BTN' => [
+                'list1' => [
+                    'dataValue' => 'mdsForm_pdf_001',
+                    'dataValue2' => 'PDF',
+                    'display' => 'Self Assessment Musculoskeletal Pain / Discomfort Survey Form (PDF)',
+                ],
+                'list2' => [
+                    'dataValue' => 'mdsForm_excel_001',
+                    'dataValue2' => 'Excel',
+                    'display' => 'Self Assessment Musculoskeletal Pain / Discomfort Survey Form (Excel)',
+                ],
+            ],
+            'route' => 'mdsForm_export',
+
+            'stylePrint_BTN' => 'btn btn-default border border-secondary',
+            'defaultPrint_BTN' => true,
+        ]);
+
+        foreach ($this->crud->fields() as $field) {
+            $attributes = $field['attributes'] ?? [];
+            if (in_array($field['type'], ['radio', 'select', 'checkbox'])) {
+                $attributes['disabled'] = 'disabled';
+            } else {
+                $attributes['readonly'] = 'readonly';
+            }
+            $value = $entry->{$field['name']} ?? ($field['value'] ?? null);
+            $this->crud->modifyField($field['name'], [
+                'attributes' => $attributes,
+                'value' => $value,
+            ]);
+        }
+        $this->crud->setOperationSetting('view', 'crud::custom_show');
+
+
+
+        CRUD::removeField('employee_id');
+        CRUD::field([
+            'name' => 'employee_name',
+            'type' => 'text',
+            'value' => $entry->employee->name,
+            'attributes' => ['readonly' => true]
+        ]);
     }
 
     /**
@@ -255,15 +290,15 @@ class MDSFormCrudController extends CrudController
         // ]);
 
         // CRUD::field([   // Checkbox
-        //     'name'  => 'fe_ll_applicable_1a',
+        //     'name'  => 'fe_ll_question_1a_applicable',
         //     'label' => 'Applicable?',
         //     'type'  => 'checkbox',
         //     'wrapper' => [
         //         'class' => 'form-group d-flex align-self-center col-md-1'
         //     ],
         //     'attributes' => [
-        //         'id' => 'fe_ll_applicable_1a',
-        //         'name' => 'fe_ll_applicable_1a',
+        //         'id' => 'fe_ll_question_1a_applicable',
+        //         'name' => 'fe_ll_question_1a_applicable',
         //     ],
         // ])->tab('Forceful Exertion');
 
@@ -1214,6 +1249,7 @@ class MDSFormCrudController extends CrudController
     protected function setupUpdateOperation()
     {
         $this->setupCreateOperation();
+        CRUD::setCreateView('vendor.backpack.crud.custom.mdsForm.create');
     }
 
     public function export(Request $request)

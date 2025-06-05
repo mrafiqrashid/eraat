@@ -950,7 +950,7 @@ class AssessmentCrudController extends CrudController
             'tab' => 'Awkward Posture'
         ]);
         CRUD::addField([
-            'name'  => 'ap_result',
+            'name'  => 'ap_score',
             'label' => false,
             'type'        => 'number',
             'attributes' => [
@@ -962,8 +962,8 @@ class AssessmentCrudController extends CrudController
                 'class' => 'form-group d-flex align-self-start col-md-2'
             ],
             'attributes' => [
-                'id' => 'ap_result',
-                'name' => 'ap_result',
+                'id' => 'ap_score',
+                'name' => 'ap_score',
             ],
             'tab' => 'Awkward Posture'
         ]);
@@ -1206,7 +1206,7 @@ class AssessmentCrudController extends CrudController
 
 
         CRUD::addField([
-            'name'  => 'snswp_result_spacer',
+            'name'  => 'snswp_score_spacer',
             'type'  => 'custom_html',
             'value' => '&nbsp;',
             'wrapper' => [
@@ -1215,7 +1215,7 @@ class AssessmentCrudController extends CrudController
             'tab' => 'Static & Sustained Work Posture'
         ]);
         CRUD::addField([
-            'name'  => 'snswp_result',
+            'name'  => 'snswp_score',
             'label' => false,
             'type'        => 'number',
             'attributes' => [
@@ -1227,8 +1227,8 @@ class AssessmentCrudController extends CrudController
                 'class' => 'form-group d-flex align-self-start col-md-2'
             ],
             'attributes' => [
-                'id' => 'snswp_result',
-                'name' => 'snswp_result',
+                'id' => 'snswp_score',
+                'name' => 'snswp_score',
             ],
             'tab' => 'Static & Sustained Work Posture'
         ]);
@@ -1369,15 +1369,15 @@ class AssessmentCrudController extends CrudController
         ]);
 
         CRUD::field([   // Checkbox
-            'name'  => 'fe_ll_applicable_1a',
+            'name'  => 'fe_ll_question_1a_applicable',
             'label' => 'Applicable?',
             'type'  => 'checkbox',
             'wrapper' => [
                 'class' => 'form-group d-flex align-self-center col-md-1'
             ],
             'attributes' => [
-                'id' => 'fe_ll_applicable_1a',
-                'name' => 'fe_ll_applicable_1a',
+                'id' => 'fe_ll_question_1a_applicable',
+                'name' => 'fe_ll_question_1a_applicable',
             ],
         ])->tab('Forceful Exertion');
 
@@ -1398,15 +1398,15 @@ class AssessmentCrudController extends CrudController
         ]);
 
         CRUD::field([   // Checkbox
-            'name'  => 'fe_ll_applicable_1b',
+            'name'  => 'fe_ll_question_1b_applicable',
             'label' => 'Applicable?',
             'type'  => 'checkbox',
             'wrapper' => [
                 'class' => 'form-group d-flex align-self-center col-md-1'
             ],
             'attributes' => [
-                'id' => 'fe_ll_applicable_1b',
-                'name' => 'fe_ll_applicable_1b',
+                'id' => 'fe_ll_question_1b_applicable',
+                'name' => 'fe_ll_question_1b_applicable',
             ],
         ])->tab('Forceful Exertion');
 
@@ -1442,15 +1442,15 @@ class AssessmentCrudController extends CrudController
             'tab' => 'Forceful Exertion'
         ]);
         CRUD::field([   // Checkbox
-            'name'  => 'fe_ll_applicable_2a',
+            'name'  => 'fe_ll_question_2a_applicable',
             'label' => 'Applicable?',
             'type'  => 'checkbox',
             'wrapper' => [
                 'class' => 'form-group d-flex align-self-center col-md-1'
             ],
             'attributes' => [
-                'id' => 'fe_ll_applicable_2a',
-                'name' => 'fe_ll_applicable_2a',
+                'id' => 'fe_ll_question_2a_applicable',
+                'name' => 'fe_ll_question_2a_applicable',
             ],
         ])->tab('Forceful Exertion');
 
@@ -1471,15 +1471,15 @@ class AssessmentCrudController extends CrudController
         ]);
 
         CRUD::field([   // Checkbox
-            'name'  => 'fe_ll_applicable_2b',
+            'name'  => 'fe_ll_question_2b_applicable',
             'label' => 'Applicable?',
             'type'  => 'checkbox',
             'wrapper' => [
                 'class' => 'form-group d-flex align-self-center col-md-1'
             ],
             'attributes' => [
-                'id' => 'fe_ll_applicable_2b',
-                'name' => 'fe_ll_applicable_2b',
+                'id' => 'fe_ll_question_2b_applicable',
+                'name' => 'fe_ll_question_2b_applicable',
             ],
         ])->tab('Forceful Exertion');
 
@@ -1514,15 +1514,15 @@ class AssessmentCrudController extends CrudController
             'tab' => 'Forceful Exertion'
         ]);
         CRUD::field([   // Checkbox
-            'name'  => 'fe_ll_applicable_3a',
+            'name'  => 'fe_ll_question_3a_applicable',
             'label' => 'Applicable?',
             'type'  => 'checkbox',
             'wrapper' => [
                 'class' => 'form-group d-flex align-self-center col-md-1'
             ],
             'attributes' => [
-                'id' => 'fe_ll_applicable_3a',
-                'name' => 'fe_ll_applicable_3a',
+                'id' => 'fe_ll_question_3a_applicable',
+                'name' => 'fe_ll_question_3a_applicable',
             ],
         ])->tab('Forceful Exertion');
 
@@ -1543,15 +1543,15 @@ class AssessmentCrudController extends CrudController
         ]);
 
         CRUD::field([   // Checkbox
-            'name'  => 'fe_ll_applicable_3b',
+            'name'  => 'fe_ll_question_3b_applicable',
             'label' => 'Applicable?',
             'type'  => 'checkbox',
             'wrapper' => [
                 'class' => 'form-group d-flex align-self-center col-md-1'
             ],
             'attributes' => [
-                'id' => 'fe_ll_applicable_3b',
-                'name' => 'fe_ll_applicable_3b',
+                'id' => 'fe_ll_question_3b_applicable',
+                'name' => 'fe_ll_question_3b_applicable',
             ],
         ])->tab('Forceful Exertion');
 
@@ -1588,15 +1588,15 @@ class AssessmentCrudController extends CrudController
             'tab' => 'Forceful Exertion'
         ]);
         CRUD::field([   // Checkbox
-            'name'  => 'fe_ll_applicable_4a',
+            'name'  => 'fe_ll_question_4a_applicable',
             'label' => 'Applicable?',
             'type'  => 'checkbox',
             'wrapper' => [
                 'class' => 'form-group d-flex align-self-center col-md-1'
             ],
             'attributes' => [
-                'id' => 'fe_ll_applicable_4a',
-                'name' => 'fe_ll_applicable_4a',
+                'id' => 'fe_ll_question_4a_applicable',
+                'name' => 'fe_ll_question_4a_applicable',
             ],
         ])->tab('Forceful Exertion');
 
@@ -1617,15 +1617,15 @@ class AssessmentCrudController extends CrudController
         ]);
 
         CRUD::field([   // Checkbox
-            'name'  => 'fe_ll_applicable_4b',
+            'name'  => 'fe_ll_question_4b_applicable',
             'label' => 'Applicable?',
             'type'  => 'checkbox',
             'wrapper' => [
                 'class' => 'form-group d-flex align-self-center col-md-1'
             ],
             'attributes' => [
-                'id' => 'fe_ll_applicable_4b',
-                'name' => 'fe_ll_applicable_4b',
+                'id' => 'fe_ll_question_4b_applicable',
+                'name' => 'fe_ll_question_4b_applicable',
             ],
         ])->tab('Forceful Exertion');
 
@@ -1659,15 +1659,15 @@ class AssessmentCrudController extends CrudController
             'tab' => 'Forceful Exertion'
         ]);
         CRUD::field([   // Checkbox
-            'name'  => 'fe_ll_applicable_5a',
+            'name'  => 'fe_ll_question_5a_applicable',
             'label' => 'Applicable?',
             'type'  => 'checkbox',
             'wrapper' => [
                 'class' => 'form-group d-flex align-self-center col-md-1'
             ],
             'attributes' => [
-                'id' => 'fe_ll_applicable_5a',
-                'name' => 'fe_ll_applicable_5a',
+                'id' => 'fe_ll_question_5a_applicable',
+                'name' => 'fe_ll_question_5a_applicable',
             ],
         ])->tab('Forceful Exertion');
 
@@ -1688,15 +1688,15 @@ class AssessmentCrudController extends CrudController
         ]);
 
         CRUD::field([   // Checkbox
-            'name'  => 'fe_ll_applicable_5b',
+            'name'  => 'fe_ll_question_5b_applicable',
             'label' => 'Applicable?',
             'type'  => 'checkbox',
             'wrapper' => [
                 'class' => 'form-group d-flex align-self-center col-md-1'
             ],
             'attributes' => [
-                'id' => 'fe_ll_applicable_5b',
-                'name' => 'fe_ll_applicable_5b',
+                'id' => 'fe_ll_question_5b_applicable',
+                'name' => 'fe_ll_question_5b_applicable',
             ],
         ])->tab('Forceful Exertion');
 
@@ -3099,7 +3099,7 @@ class AssessmentCrudController extends CrudController
 
 
         CRUD::addField([
-            'name'  => 'fe_result_spacer',
+            'name'  => 'fe_score_spacer',
             'type'  => 'custom_html',
             'value' => '&nbsp;',
             'wrapper' => [
@@ -3108,7 +3108,7 @@ class AssessmentCrudController extends CrudController
             'tab' => 'Forceful Exertion'
         ]);
         CRUD::addField([
-            'name'  => 'fe_result',
+            'name'  => 'fe_score',
             'label' => false,
             'type'        => 'number',
             'attributes' => [
@@ -3120,8 +3120,8 @@ class AssessmentCrudController extends CrudController
                 'class' => 'form-group d-flex align-self-start col-md-2'
             ],
             'attributes' => [
-                'id' => 'fe_result',
-                'name' => 'fe_result',
+                'id' => 'fe_score',
+                'name' => 'fe_score',
             ],
             'tab' => 'Forceful Exertion'
         ]);
@@ -3435,7 +3435,7 @@ class AssessmentCrudController extends CrudController
 
 
         CRUD::addField([
-            'name'  => 'rm_result_spacer',
+            'name'  => 'rm_score_spacer',
             'type'  => 'custom_html',
             'value' => '&nbsp;',
             'wrapper' => [
@@ -3444,7 +3444,7 @@ class AssessmentCrudController extends CrudController
             'tab' => 'Repetitive Motion'
         ]);
         CRUD::addField([
-            'name'  => 'rm_result',
+            'name'  => 'rm_score',
             'label' => false,
             'type'        => 'number',
             'attributes' => [
@@ -3456,8 +3456,8 @@ class AssessmentCrudController extends CrudController
                 'class' => 'form-group d-flex align-self-start col-md-2'
             ],
             'attributes' => [
-                'id' => 'rm_result',
-                'name' => 'rm_result',
+                'id' => 'rm_score',
+                'name' => 'rm_score',
             ],
             'tab' => 'Repetitive Motion'
         ]);
@@ -3722,7 +3722,7 @@ class AssessmentCrudController extends CrudController
 
 
         CRUD::addField([
-            'name'  => 'vibration_result_spacer',
+            'name'  => 'vibration_score_spacer',
             'type'  => 'custom_html',
             'value' => '&nbsp;',
             'wrapper' => [
@@ -3731,7 +3731,7 @@ class AssessmentCrudController extends CrudController
             'tab' => 'Vibration'
         ]);
         CRUD::addField([
-            'name'  => 'vibration_result',
+            'name'  => 'vibration_score',
             'label' => false,
             'type'        => 'number',
             'attributes' => [
@@ -3743,8 +3743,8 @@ class AssessmentCrudController extends CrudController
                 'class' => 'form-group d-flex align-self-start col-md-2'
             ],
             'attributes' => [
-                'id' => 'vibration_result',
-                'name' => 'vibration_result',
+                'id' => 'vibration_score',
+                'name' => 'vibration_score',
             ],
             'tab' => 'Vibration'
         ]);
@@ -3832,7 +3832,7 @@ class AssessmentCrudController extends CrudController
 
 
         CRUD::addField([
-            'name'  => 'lighting_result_spacer',
+            'name'  => 'lighting_score_spacer',
             'type'  => 'custom_html',
             'value' => '&nbsp;',
             'wrapper' => [
@@ -3841,7 +3841,7 @@ class AssessmentCrudController extends CrudController
             'tab' => 'Lighting'
         ]);
         CRUD::addField([
-            'name'  => 'lighting_result',
+            'name'  => 'lighting_score',
             'label' => false,
             'type'        => 'number',
             'attributes' => [
@@ -3853,8 +3853,8 @@ class AssessmentCrudController extends CrudController
                 'class' => 'form-group d-flex align-self-start col-md-2'
             ],
             'attributes' => [
-                'id' => 'lighting_result',
-                'name' => 'lighting_result',
+                'id' => 'lighting_score',
+                'name' => 'lighting_score',
             ],
             'tab' => 'Lighting'
         ]);
@@ -3926,7 +3926,7 @@ class AssessmentCrudController extends CrudController
 
 
         CRUD::addField([
-            'name'  => 'temperature_result_spacer',
+            'name'  => 'temperature_score_spacer',
             'type'  => 'custom_html',
             'value' => '&nbsp;',
             'wrapper' => [
@@ -3935,7 +3935,7 @@ class AssessmentCrudController extends CrudController
             'tab' => 'Temperature'
         ]);
         CRUD::addField([
-            'name'  => 'temperature_result',
+            'name'  => 'temperature_score',
             'label' => false,
             'type'        => 'number',
             'attributes' => [
@@ -3947,8 +3947,8 @@ class AssessmentCrudController extends CrudController
                 'class' => 'form-group d-flex align-self-start col-md-2'
             ],
             'attributes' => [
-                'id' => 'temperature_result',
-                'name' => 'temperature_result',
+                'id' => 'temperature_score',
+                'name' => 'temperature_score',
             ],
             'tab' => 'Temperature'
         ]);
@@ -4024,7 +4024,7 @@ class AssessmentCrudController extends CrudController
 
 
         CRUD::addField([
-            'name'  => 'ventilation_result_spacer',
+            'name'  => 'ventilation_score_spacer',
             'type'  => 'custom_html',
             'value' => '&nbsp;',
             'wrapper' => [
@@ -4033,7 +4033,7 @@ class AssessmentCrudController extends CrudController
             'tab' => 'Ventilation'
         ]);
         CRUD::addField([
-            'name'  => 'ventilation_result',
+            'name'  => 'ventilation_score',
             'label' => false,
             'type'        => 'number',
             'attributes' => [
@@ -4045,8 +4045,8 @@ class AssessmentCrudController extends CrudController
                 'class' => 'form-group d-flex align-self-start col-md-2'
             ],
             'attributes' => [
-                'id' => 'ventilation_result',
-                'name' => 'ventilation_result',
+                'id' => 'ventilation_score',
+                'name' => 'ventilation_score',
             ],
             'tab' => 'Ventilation'
         ]);
@@ -4145,7 +4145,7 @@ class AssessmentCrudController extends CrudController
 
 
         CRUD::addField([
-            'name'  => 'noise_result_spacer',
+            'name'  => 'noise_score_spacer',
             'type'  => 'custom_html',
             'value' => '&nbsp;',
             'wrapper' => [
@@ -4154,7 +4154,7 @@ class AssessmentCrudController extends CrudController
             'tab' => 'Noise'
         ]);
         CRUD::addField([
-            'name'  => 'noise_result',
+            'name'  => 'noise_score',
             'label' => false,
             'type'        => 'number',
             'attributes' => [
@@ -4166,8 +4166,8 @@ class AssessmentCrudController extends CrudController
                 'class' => 'form-group d-flex align-self-start col-md-2'
             ],
             'attributes' => [
-                'id' => 'noise_result',
-                'name' => 'noise_result',
+                'id' => 'noise_score',
+                'name' => 'noise_score',
             ],
             'tab' => 'Noise'
         ]);

@@ -23,6 +23,19 @@ class IERAChecklist extends Model
     protected $guarded = ['id'];
     // protected $fillable = [];
     // protected $hidden = [];
+    protected $casts = [
+        'fe_ll_question_1a_applicable' => 'boolean',
+        'fe_ll_question_1b_applicable' => 'boolean',
+        'fe_ll_question_2a_applicable' => 'boolean',
+        'fe_ll_question_2b_applicable' => 'boolean',
+        'fe_ll_question_3a_applicable' => 'boolean',
+        'fe_ll_question_3b_applicable' => 'boolean',
+        'fe_ll_question_4a_applicable' => 'boolean',
+        'fe_ll_question_4b_applicable' => 'boolean',
+        'fe_ll_question_5a_applicable' => 'boolean',
+        'fe_ll_question_5b_applicable' => 'boolean',
+    ];
+
 
     /*
     |--------------------------------------------------------------------------
@@ -44,6 +57,11 @@ class IERAChecklist extends Model
     public function assessee()
     {
         return $this->belongsTo(Assessee::class, 'assessee_id');
+        // If your foreign key isn't 'user_id', you need to specify it (like 'assessee_id')
+    }
+    public function employee()
+    {
+        return $this->belongsTo(Employee::class, 'employee_id');
         // If your foreign key isn't 'user_id', you need to specify it (like 'assessee_id')
     }
     public function task()

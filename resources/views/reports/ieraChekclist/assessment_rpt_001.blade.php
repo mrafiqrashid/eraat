@@ -3,7 +3,7 @@
 
 <head>
     @if ($request['reportType'] == 'pdf')
-    <title>{{ $request['titleReport'] ? $request['titleReport'] : ' - ' }}</title>
+        <title>{{ $request['titleReport'] ? $request['titleReport'] : ' - ' }}</title>
     @endif
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -69,8 +69,8 @@
     </style>
 </head>
 @php
-use Carbon\Carbon;
-// dd($data2);
+    use Carbon\Carbon;
+    // dd($data2);
 @endphp
 
 <body>
@@ -110,7 +110,7 @@ use Carbon\Carbon;
                 <td>Awkward Postures</td>
                 <td>13</td>
                 <td>>= 6</td>
-                <td>{{ $data['ap_result'] ?? '' }}</td>
+                <td>{{ $data['ap_score'] ?? '' }}</td>
                 <td rowspan="10">
                     <p>If YES, please tick (√) which part of the body</p>
                     <table class="content-style" style="margin-bottom: 0px;">
@@ -124,22 +124,20 @@ use Carbon\Carbon;
                             </tr>
                             <tr>
                                 <td>Shoulder</td>
-                                <td>{{ $data2['shoulder_a'] == 1 || $data2['shoulder_b'] == 1 ? '√' : ''
-                                    }}
+                                <td>{{ $data2['shoulder_a'] == 1 || $data2['shoulder_b'] == 1 ? '√' : '' }}
                                 </td>
                             </tr>
                             <tr>
                                 <td>Upper back</td>
-                                <td>{{ $data2['upperBack_a'] == 1 || $data2['upperBack_b'] == 1 ? '√' :
-                                    '' }}
+                                <td>{{ $data2['upperBack_a'] == 1 || $data2['upperBack_b'] == 1 ? '√' : '' }}
                                 </td>
                             </tr>
                             <tr>
                                 <td>Upper arm</td>
                                 <td>{{ $data2['upperArm_a_left'] == 1 ||
-                                    $data2['upperArm_a_right'] == 1 ||
-                                    $data2['upperArm_b_left'] == 1 ||
-                                    $data2['upperArm_b_right'] == 1
+                                $data2['upperArm_a_right'] == 1 ||
+                                $data2['upperArm_b_left'] == 1 ||
+                                $data2['upperArm_b_right'] == 1
                                     ? '√'
                                     : '' }}
                                 </td>
@@ -151,9 +149,9 @@ use Carbon\Carbon;
                             <tr>
                                 <td>Forearm</td>
                                 <td>{{ $data2['lowerArm_a_left'] == 1 ||
-                                    $data2['lowerArm_a_right'] == 1 ||
-                                    $data2['lowerArm_b_left'] == 1 ||
-                                    $data2['lowerArm_b_right'] == 1
+                                $data2['lowerArm_a_right'] == 1 ||
+                                $data2['lowerArm_b_left'] == 1 ||
+                                $data2['lowerArm_b_right'] == 1
                                     ? '√'
                                     : '' }}
                                 </td>
@@ -161,9 +159,9 @@ use Carbon\Carbon;
                             <tr>
                                 <td>Wrist</td>
                                 <td>{{ $data2['wrist_a_left'] == 1 ||
-                                    $data2['wrist_a_right'] == 1 ||
-                                    $data2['wrist_b_left'] == 1 ||
-                                    $data2['wrist_b_right'] == 1
+                                $data2['wrist_a_right'] == 1 ||
+                                $data2['wrist_b_left'] == 1 ||
+                                $data2['wrist_b_right'] == 1
                                     ? '√'
                                     : '' }}
                                 </td>
@@ -171,27 +169,24 @@ use Carbon\Carbon;
                             <tr>
                                 <td>Hand</td>
                                 <td>{{ $data2['hand_a_left'] == 1 ||
-                                    $data2['hand_a_right'] == 1 ||
-                                    $data2['hand_b_left'] == 1 ||
-                                    $data2['hand_b_right'] == 1
+                                $data2['hand_a_right'] == 1 ||
+                                $data2['hand_b_left'] == 1 ||
+                                $data2['hand_b_right'] == 1
                                     ? '√'
                                     : '' }}
                                 </td>
                             </tr>
                             <tr>
                                 <td>Hip/buttocks</td>
-                                <td>{{ $data2['lowerBack_a'] == 1 ||
-                                    $data2['lowerBack_b'] == 1
-                                    ? '√'
-                                    : '' }}
+                                <td>{{ $data2['lowerBack_a'] == 1 || $data2['lowerBack_b'] == 1 ? '√' : '' }}
                                 </td>
                             </tr>
                             <tr>
                                 <td>Thigh</td>
                                 <td>{{ $data2['thigh_a_left'] == 1 ||
-                                    $data2['thigh_a_right'] == 1 ||
-                                    $data2['thigh_b_left'] == 1 ||
-                                    $data2['thigh_b_right'] == 1
+                                $data2['thigh_a_right'] == 1 ||
+                                $data2['thigh_b_left'] == 1 ||
+                                $data2['thigh_b_right'] == 1
                                     ? '√'
                                     : '' }}
                                 </td>
@@ -199,9 +194,9 @@ use Carbon\Carbon;
                             <tr>
                                 <td>Knee</td>
                                 <td>{{ $data2['knee_a_left'] == 1 ||
-                                    $data2['knee_a_right'] == 1 ||
-                                    $data2['knee_b_left'] == 1 ||
-                                    $data2['knee_b_right'] == 1
+                                $data2['knee_a_right'] == 1 ||
+                                $data2['knee_b_left'] == 1 ||
+                                $data2['knee_b_right'] == 1
                                     ? '√'
                                     : '' }}
                                 </td>
@@ -209,9 +204,9 @@ use Carbon\Carbon;
                             <tr>
                                 <td>Calf</td>
                                 <td>{{ $data2['calf_a_left'] == 1 ||
-                                    $data2['calf_a_right'] == 1 ||
-                                    $data2['calf_b_left'] == 1 ||
-                                    $data2['calf_b_right'] == 1
+                                $data2['calf_a_right'] == 1 ||
+                                $data2['calf_b_left'] == 1 ||
+                                $data2['calf_b_right'] == 1
                                     ? '√'
                                     : '' }}
                                 </td>
@@ -219,9 +214,9 @@ use Carbon\Carbon;
                             <tr>
                                 <td>Ankle</td>
                                 <td>{{ $data2['mdsForm_angkle_a_left'] == 1 ||
-                                    $data2['mdsForm_angkle_a_right'] == 1 ||
-                                    $data2['mdsForm_angkle_b_left'] == 1 ||
-                                    $data2['mdsForm_angkle_b_right'] == 1
+                                $data2['mdsForm_angkle_a_right'] == 1 ||
+                                $data2['mdsForm_angkle_b_left'] == 1 ||
+                                $data2['mdsForm_angkle_b_right'] == 1
                                     ? '√'
                                     : '' }}
                                 </td>
@@ -229,9 +224,9 @@ use Carbon\Carbon;
                             <tr>
                                 <td>Feet</td>
                                 <td>{{ $data2['feet_a_left'] == 1 ||
-                                    $data2['feet_a_right'] == 1 ||
-                                    $data2['feet_b_left'] == 1 ||
-                                    $data2['feet_b_right'] == 1
+                                $data2['feet_a_right'] == 1 ||
+                                $data2['feet_b_left'] == 1 ||
+                                $data2['feet_b_right'] == 1
                                     ? '√'
                                     : '' }}
                                 </td>
@@ -242,24 +237,24 @@ use Carbon\Carbon;
 
 
                 </td>
-                <td>{{ $data['ap_result'] >= 6 ? 'Yes' : 'No' }}</td>
+                <td>{{ $data['ap_score'] >= 6 ? 'Yes' : 'No' }}</td>
             </tr>
             <tr>
                 <td>Static and Sustain Work Posture</td>
                 <td>3</td>
                 <td>>= 1</td>
-                <td>{{ $data['snswp_result'] ?? '' }}</td>
+                <td>{{ $data['snswp_score'] ?? '' }}</td>
                 {{-- <td></td> --}}
-                <td>{{ $data['snswp_result'] >= 1 ? 'Yes' : 'No' }}</td>
+                <td>{{ $data['snswp_score'] >= 1 ? 'Yes' : 'No' }}</td>
             </tr>
 
             <tr>
                 <td>Forceful Exertion</td>
                 <td>3</td>
                 <td>1</td>
-                <td>{{ $data['fe_result'] ?? '' }}</td>
+                <td>{{ $data['fe_score'] ?? '' }}</td>
                 {{-- <td></td> --}}
-                <td>{{ $data['fe_result'] >= 1 ? 'Yes' : 'No' }}</td>
+                <td>{{ $data['fe_score'] >= 1 ? 'Yes' : 'No' }}</td>
             </tr>
 
 
@@ -267,18 +262,18 @@ use Carbon\Carbon;
                 <td>Repetitive Motion</td>
                 <td>5</td>
                 <td>>1</td>
-                <td>{{ $data['rm_result'] ?? '' }}</td>
+                <td>{{ $data['rm_score'] ?? '' }}</td>
                 {{-- <td></td> --}}
-                <td>{{ $data['rm_result'] >= 1 ? 'Yes' : 'No' }}</td>
+                <td>{{ $data['rm_score'] >= 1 ? 'Yes' : 'No' }}</td>
             </tr>
 
             <tr>
                 <td>Vibration</td>
                 <td>4</td>
                 <td>>1</td>
-                <td>{{ $data['vibration_result'] ?? '' }}</td>
+                <td>{{ $data['vibration_score'] ?? '' }}</td>
                 {{-- <td></td> --}}
-                <td>{{ $data['vibration_result'] >= 1 ? 'Yes' : 'No' }}</td>
+                <td>{{ $data['vibration_score'] >= 1 ? 'Yes' : 'No' }}</td>
             </tr>
 
 
@@ -286,36 +281,36 @@ use Carbon\Carbon;
                 <td>Lighting</td>
                 <td>1</td>
                 <td>1</td>
-                <td>{{ $data['lighting_result'] ?? '' }}</td>
+                <td>{{ $data['lighting_score'] ?? '' }}</td>
                 {{-- <td></td> --}}
-                <td>{{ $data['lighting_result'] >= 1 ? 'Yes' : 'No' }}</td>
+                <td>{{ $data['lighting_score'] >= 1 ? 'Yes' : 'No' }}</td>
             </tr>
 
             <tr>
                 <td>Temperature</td>
                 <td>1</td>
                 <td>1</td>
-                <td>{{ $data['temperature_result'] ?? '' }}</td>
+                <td>{{ $data['temperature_score'] ?? '' }}</td>
                 {{-- <td></td> --}}
-                <td>{{ $data['temperature_result'] >= 1 ? 'Yes' : 'No' }}</td>
+                <td>{{ $data['temperature_score'] >= 1 ? 'Yes' : 'No' }}</td>
             </tr>
 
             <tr>
                 <td>Ventilation</td>
                 <td>1</td>
                 <td>1</td>
-                <td>{{ $data['ventilation_result'] ?? '' }}</td>
+                <td>{{ $data['ventilation_score'] ?? '' }}</td>
                 {{-- <td></td> --}}
-                <td>{{ $data['ventilation_result'] >= 1 ? 'Yes' : 'No' }}</td>
+                <td>{{ $data['ventilation_score'] >= 1 ? 'Yes' : 'No' }}</td>
             </tr>
 
             <tr>
                 <td>Noise</td>
                 <td>1</td>
                 <td>1</td>
-                <td>{{ $data['noise_result'] ?? '' }}</td>
+                <td>{{ $data['noise_score'] ?? '' }}</td>
                 {{-- <td></td> --}}
-                <td>{{ $data['noise_result'] >= 1 ? 'Yes' : 'No' }}</td>
+                <td>{{ $data['noise_score'] >= 1 ? 'Yes' : 'No' }}</td>
             </tr>
             <tr>
                 <td></td>

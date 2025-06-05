@@ -30,16 +30,16 @@ return new class extends Migration
             $table->integer('snswp_question_2')->nullable();
             $table->integer('snswp_question_3')->nullable();
             $table->integer('fe_bc_1_gender')->nullable();
-            $table->boolean('fe_ll_applicable_1a')->default(false);
-            $table->boolean('fe_ll_applicable_1b')->default(false);
-            $table->boolean('fe_ll_applicable_2a')->default(false);
-            $table->boolean('fe_ll_applicable_2b')->default(false);
-            $table->boolean('fe_ll_applicable_3a')->default(false);
-            $table->boolean('fe_ll_applicable_3b')->default(false);
-            $table->boolean('fe_ll_applicable_4a')->default(false);
-            $table->boolean('fe_ll_applicable_4b')->default(false);
-            $table->boolean('fe_ll_applicable_5a')->default(false);
-            $table->boolean('fe_ll_applicable_5b')->default(false);
+            $table->boolean('fe_ll_question_1a_applicable')->default(false);
+            $table->boolean('fe_ll_question_1b_applicable')->default(false);
+            $table->boolean('fe_ll_question_2a_applicable')->default(false);
+            $table->boolean('fe_ll_question_2b_applicable')->default(false);
+            $table->boolean('fe_ll_question_3a_applicable')->default(false);
+            $table->boolean('fe_ll_question_3b_applicable')->default(false);
+            $table->boolean('fe_ll_question_4a_applicable')->default(false);
+            $table->boolean('fe_ll_question_4b_applicable')->default(false);
+            $table->boolean('fe_ll_question_5a_applicable')->default(false);
+            $table->boolean('fe_ll_question_5b_applicable')->default(false);
             $table->decimal('fe_ll_question_1a', 10, 3)->nullable();
             $table->decimal('fe_ll_question_1b', 10, 3)->nullable();
             $table->decimal('fe_ll_question_2a', 10, 3)->nullable();
@@ -114,15 +114,15 @@ return new class extends Migration
 
 
 
-            $table->integer('ap_result')->nullable();
-            $table->integer('snswp_result')->nullable();
-            $table->integer('fe_result')->nullable();
-            $table->integer('rm_result')->nullable();
-            $table->integer('vibration_result')->nullable();
-            $table->integer('lighting_result')->nullable();
-            $table->integer('temperature_result')->nullable();
-            $table->integer('ventilation_result')->nullable();
-            $table->integer('noise_result')->nullable();
+            $table->integer('ap_score')->nullable();
+            $table->integer('snswp_score')->nullable();
+            $table->integer('fe_score')->nullable();
+            $table->integer('rm_score')->nullable();
+            $table->integer('vibration_score')->nullable();
+            $table->integer('lighting_score')->nullable();
+            $table->integer('temperature_score')->nullable();
+            $table->integer('ventilation_score')->nullable();
+            $table->integer('noise_score')->nullable();
 
 
 
