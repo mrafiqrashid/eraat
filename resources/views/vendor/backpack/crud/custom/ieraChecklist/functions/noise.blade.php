@@ -4,7 +4,7 @@
         let noise_count = 0;
 
         // Count questions with value '2'
-        for (let i = 2; i <= totalQuestions; i++) {
+        for (let i = 1; i <= totalQuestions; i++) {
             const question = document.getElementById(`noise_question_${i}`);
             if (question && question.value === '2') {
                 noise_count++;
@@ -22,7 +22,7 @@
         const totalQuestions = 2;
 
         // Add change event listeners to all questions
-        for (let i = 2; i <= totalQuestions; i++) {
+        for (let i = 1; i <= totalQuestions; i++) {
             const question = document.getElementById(`noise_question_${i}`);
             if (question) {
                 question.addEventListener('change', noiseUpdateScore);
