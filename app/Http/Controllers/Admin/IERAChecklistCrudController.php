@@ -15,16 +15,12 @@ use App\Http\Controllers\Admin\IERACheclist\Ventilation;
 use App\Http\Controllers\Admin\IERACheclist\Vibration;
 use App\Http\Middleware\CheckProjectSession;
 use App\Http\Requests\IERAChecklistRequest;
-use App\Models\Employee;
 use App\Models\IERAChecklist;
 use App\Models\MDSForm;
-use App\Models\Project;
-use App\Models\Task;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
 use Barryvdh\Snappy\Facades\SnappyPdf;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Log;
 
 /**
  * Class IERAChecklistCrudController
