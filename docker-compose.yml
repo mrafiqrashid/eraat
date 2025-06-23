@@ -50,6 +50,7 @@ services:
             timeout: 5s
     phpmyadmin:
         image: phpmyadmin/phpmyadmin
+        platform: ${DOCKER_PLATFORM:-} 
         ports:
             - '8080:80'
         environment:
