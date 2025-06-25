@@ -110,7 +110,7 @@ class LiftingAndLowering
                 'attributes' => [
                     'id' => 'fe_ll_question_1a',
                     'name' => 'fe_ll_question_1a',
-                    'disabled' => true,
+                    'disabled' => old('fe_ll_question_1a_applicable') ? false : true,
                 ],
                 'wrapper' => [
                     'class' => 'form-group d-flex align-self-start col-md-2'
@@ -162,7 +162,7 @@ class LiftingAndLowering
                 'attributes' => [
                     'id' => 'fe_ll_question_1b',
                     'name' => 'fe_ll_question_1b',
-                    'disabled' => true,
+                    'disabled' => old('fe_ll_question_1b_applicable') ? false : true,
                 ],
                 'wrapper' => [
                     'class' => 'form-group d-flex align-self-start col-md-2'
@@ -176,6 +176,7 @@ class LiftingAndLowering
                 'attributes' => [
                     'id' => 'fe_ll_question_1b_applicable',
                     'name' => 'fe_ll_question_1b_applicable',
+                    'value' => 1,
                 ],
                 'wrapper' => [
                     'class' => 'form-group d-flex justify-content-start align-self-center col-md-1'
@@ -220,7 +221,7 @@ class LiftingAndLowering
                 'attributes' => [
                     'id' => 'fe_ll_question_2a',
                     'name' => 'fe_ll_question_2a',
-                    'disabled' => true,
+                    'disabled' => old('fe_ll_question_2a_applicable') ? false : true,
                 ],
                 'wrapper' => [
                     'class' => 'form-group d-flex align-self-start col-md-2'
@@ -234,6 +235,7 @@ class LiftingAndLowering
                 'attributes' => [
                     'id' => 'fe_ll_question_2a_applicable',
                     'name' => 'fe_ll_question_2a_applicable',
+                    'value' => 1,
                 ],
                 'wrapper' => [
                     'class' => 'form-group d-flex align-self-center col-md-1'
@@ -271,7 +273,7 @@ class LiftingAndLowering
                 'attributes' => [
                     'id' => 'fe_ll_question_2b',
                     'name' => 'fe_ll_question_2b',
-                    'disabled' => true,
+                    'disabled' => old('fe_ll_question_2b_applicable') ? false : true,
                 ],
                 'wrapper' => [
                     'class' => 'form-group d-flex align-self-start col-md-2'
@@ -286,6 +288,7 @@ class LiftingAndLowering
                 'attributes' => [
                     'id' => 'fe_ll_question_2b_applicable',
                     'name' => 'fe_ll_question_2b_applicable',
+                    'value' => 1,
                 ],
                 'wrapper' => [
                     'class' => 'form-group d-flex align-self-center col-md-1'
@@ -328,7 +331,7 @@ class LiftingAndLowering
                 'attributes' => [
                     'id' => 'fe_ll_question_3a',
                     'name' => 'fe_ll_question_3a',
-                    'disabled' => true,
+                    'disabled' => old('fe_ll_question_3a_applicable') ? false : true,
                 ],
                 'wrapper' => [
                     'class' => 'form-group d-flex align-self-start col-md-2'
@@ -342,6 +345,7 @@ class LiftingAndLowering
                 'attributes' => [
                     'id' => 'fe_ll_question_3a_applicable',
                     'name' => 'fe_ll_question_3a_applicable',
+                    'value' => 1,
                 ],
                 'wrapper' => [
                     'class' => 'form-group d-flex align-self-center col-md-1'
@@ -379,7 +383,7 @@ class LiftingAndLowering
                 'attributes' => [
                     'id' => 'fe_ll_question_3b',
                     'name' => 'fe_ll_question_3b',
-                    'disabled' => true,
+                    'disabled' => old('fe_ll_question_3b_applicable') ? false : true,
                 ],
                 'wrapper' => [
                     'class' => 'form-group d-flex align-self-start col-md-2'
@@ -393,6 +397,7 @@ class LiftingAndLowering
                 'attributes' => [
                     'id' => 'fe_ll_question_3b_applicable',
                     'name' => 'fe_ll_question_3b_applicable',
+                    'value' => 1,
                 ],
                 'wrapper' => [
                     'class' => 'form-group d-flex align-self-center col-md-1'
@@ -438,7 +443,7 @@ class LiftingAndLowering
                 'attributes' => [
                     'id' => 'fe_ll_question_4a',
                     'name' => 'fe_ll_question_4a',
-                    'disabled' => true,
+                    'disabled' => old('fe_ll_question_4a_applicable') ? false : true,
                 ],
                 'wrapper' => [
                     'class' => 'form-group d-flex align-self-start col-md-2'
@@ -452,6 +457,7 @@ class LiftingAndLowering
                 'attributes' => [
                     'id' => 'fe_ll_question_4a_applicable',
                     'name' => 'fe_ll_question_4a_applicable',
+                    'value' => 1,
                 ],
                 'wrapper' => [
                     'class' => 'form-group d-flex align-self-center col-md-1'
@@ -489,7 +495,7 @@ class LiftingAndLowering
                 'attributes' => [
                     'id' => 'fe_ll_question_4b',
                     'name' => 'fe_ll_question_4b',
-                    'disabled' => true,
+                    'disabled' => old('fe_ll_question_4b_applicable') ? false : true,
                 ],
                 'wrapper' => [
                     'class' => 'form-group d-flex align-self-start col-md-2'
@@ -503,6 +509,7 @@ class LiftingAndLowering
                 'attributes' => [
                     'id' => 'fe_ll_question_4b_applicable',
                     'name' => 'fe_ll_question_4b_applicable',
+                    'value' => 1,
                 ],
                 'wrapper' => [
                     'class' => 'form-group d-flex align-self-center col-md-1'
@@ -545,7 +552,7 @@ class LiftingAndLowering
                 'attributes' => [
                     'id' => 'fe_ll_question_5a',
                     'name' => 'fe_ll_question_5a',
-                    'disabled' => true,
+                    'disabled' => old('fe_ll_question_5a_applicable') ? false : true,
                 ],
                 'wrapper' => [
                     'class' => 'form-group d-flex align-self-start col-md-2'
@@ -559,6 +566,7 @@ class LiftingAndLowering
                 'attributes' => [
                     'id' => 'fe_ll_question_5a_applicable',
                     'name' => 'fe_ll_question_5a_applicable',
+                    'value' => 1,
                 ],
                 'wrapper' => [
                     'class' => 'form-group d-flex align-self-center col-md-1'
@@ -596,7 +604,7 @@ class LiftingAndLowering
                 'attributes' => [
                     'id' => 'fe_ll_question_5b',
                     'name' => 'fe_ll_question_5b',
-                    'disabled' => true,
+                    'disabled' => old('fe_ll_question_5b_applicable') ? false : true,
                 ],
                 'wrapper' => [
                     'class' => 'form-group d-flex align-self-start col-md-2'
@@ -610,6 +618,7 @@ class LiftingAndLowering
                 'attributes' => [
                     'id' => 'fe_ll_question_5b_applicable',
                     'name' => 'fe_ll_question_5b_applicable',
+                    'value' => 1,
                 ],
                 'wrapper' => [
                     'class' => 'form-group d-flex align-self-center col-md-1'
