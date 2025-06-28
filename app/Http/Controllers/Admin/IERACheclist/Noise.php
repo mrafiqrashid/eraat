@@ -115,12 +115,6 @@ class Noise
                 ],
                 'tab' => 'Noise'
             ],
-            [
-                'name' => 'next_to_description',
-                'type' => 'custom_html',
-                'value' => '<button type="button" class="btn btn-primary next-tab" data-next-tab="Description">Next</button>',
-                'tab' => 'Noise',
-            ],
         ];
     }
 }
