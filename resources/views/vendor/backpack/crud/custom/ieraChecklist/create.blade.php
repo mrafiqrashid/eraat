@@ -10,6 +10,9 @@
     @include('crud::custom.ieraChecklist.functions.temperature')
     @include('crud::custom.ieraChecklist.functions.ventilation')
     @include('crud::custom.ieraChecklist.functions.noise')
+
+    @include('crud::custom.ieraChecklist.functions.tabBtn')
+    @include('crud::custom.ieraChecklist.functions.nextBtn')
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             // Initialize event listeners

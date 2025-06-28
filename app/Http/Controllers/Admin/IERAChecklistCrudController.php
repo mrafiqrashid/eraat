@@ -170,45 +170,27 @@ class IERAChecklistCrudController extends CrudController
         }
         CRUD::setValidation(IERAChecklistRequest::class);
         CRUD::addFields(Background::get());
-        CRUD::addFields(AwkwardPosture::get());
-        CRUD::addFields(StaticAndSustainedWorkPosture::get());
-        CRUD::addFields(ForcefulExertion::get());
-        CRUD::addFields(RepetitiveMotion::get());
-        CRUD::addFields(Vibration::get());
-        CRUD::addFields(Lighting::get());
-        CRUD::addFields(Temperature::get());
-        CRUD::addFields(Ventilation::get());
-        CRUD::addFields(Noise::get());
-        CRUD::addFields(Description::get());
 
-        // Remove default buttons
-        CRUD::removeButton('save');
-        CRUD::removeButton('save_and_back');
-        CRUD::removeButton('save_and_edit');
-        CRUD::removeButton('save_and_new');
-        // CRUD::addSaveAction([
-        //     'name' => 'save_action_one',
-        //     'redirect' => function ($crud, $request, $itemId) {
-        //         return $crud->route;
-        //     }, // what's the redirect URL, where the user will be taken after saving?
+        CRUD::removeSaveActions([
+            'save_and_back',
+            'save_and_edit',
+            'save_and_new',
+            'save_and_preview',
+        ]);
 
-        //     // OPTIONAL:
-        //     'button_text' => 'Next', // override text appearing on the button
-        //     // You can also provide translatable texts, for example:
-        //     // 'button_text' => trans('backpack::crud.save_action_one'),
-        //     'visible' => function ($crud) {
-        //         if (request()->has('#')) {
-        //             Log::info('Initial tab accessed: ' . request()->input('#'));
-        //         }
-        //         return true;
-        //     }, // customize when this save action is visible for the current operation
-        //     'referrer_url' => function ($crud, $request, $itemId) {
-        //         return $crud->route;
-        //     }, // override http_referrer_url
-        //     'order' => 1, // change the order save actions are in
-        // ]);
-
-        CRUD::setFromDb(); // set fields from db columns.
+        CRUD::addSaveAction([
+            'name' => 'save_and_edit_redirect',
+            'button_text' => 'Next',
+            'redirect' => function ($crud, $request, $itemId) {
+                return $crud->route . '/' . $itemId . '/edit';
+            },
+            'visible' => function ($crud) {
+                return $crud->getCurrentOperation() == 'create';
+            },
+            'referrer_url' => function ($crud, $request, $itemId) {
+                return url($crud->route . '/' . $itemId . '/edit');
+            }
+        ]);
         CRUD::setCreateView('crud::custom.ieraChecklist.create');
     }
 
@@ -221,6 +203,70 @@ class IERAChecklistCrudController extends CrudController
     protected function setupUpdateOperation()
     {
         $this->setupCreateOperation();
+        CRUD::addFields(AwkwardPosture::get());
+        CRUD::addFields(StaticAndSustainedWorkPosture::get());
+        CRUD::addFields(ForcefulExertion::get());
+        CRUD::addFields(RepetitiveMotion::get());
+        CRUD::addFields(Vibration::get());
+        CRUD::addFields(Lighting::get());
+        CRUD::addFields(Temperature::get());
+        CRUD::addFields(Ventilation::get());
+        CRUD::addFields(Noise::get());
+        CRUD::addFields(Description::get());
+
+        CRUD::addSaveActions([
+            [
+                'name' => 'save_and_edit_redirect',
+                'button_text' => 'Next',
+                'visible' => fn($crud) => $crud->getCurrentOperation() == 'update',
+                'redirect' => function ($crud, $request, $itemId) {
+                    $tab = request()->get('tab');
+                    $routes = [
+                        'awkward-posture' => 'static-sustained-work-posture',
+                        'static-sustained-work-posture' => 'forceful-exertion',
+                        'forceful-exertion' => 'repetitive-motion',
+                        'repetitive-motion' => 'vibration',
+                        'vibration' => 'lighting',
+                        'lighting' => 'temperature',
+                        'temperature' => 'ventilation',
+                        'ventilation' => 'noise',
+                        'noise' => 'description',
+                        'description' => 'list',
+                    ];
+
+                    $next = $routes[$tab] ?? 'static-sustained-work-posture';
+                    return $next !== 'list'
+                        ? $crud->route . '/' . $itemId . '/edit#' . $next
+                        : $crud->route;
+                },
+            ],
+            [
+                'name' => 'save_and_edit_back',
+                'button_text' => 'Back',
+                'visible' => fn($crud) => $crud->getCurrentOperation() == 'update',
+                'redirect' => function ($crud, $request, $itemId) {
+                    $tab = request()->get('tab');
+                    $routes = [
+                        'awkward-posture' => 'list',
+                        'static-sustained-work-posture' => 'awkward-posture',
+                        'forceful-exertion' => 'static-sustained-work-posture',
+                        'repetitive-motion' => 'forceful-exertion',
+                        'vibration' => 'repetitive-motion',
+                        'lighting' => 'vibration',
+                        'temperature' => 'lighting',
+                        'ventilation' => 'temperature',
+                        'noise' => 'ventilation',
+                        'description' => 'noise',
+                    ];
+
+                    $prev = $routes[$tab] ?? null;
+                    return $prev !== 'list'
+                        ? $crud->route . '/' . $itemId . '/edit#' . $prev
+                        : $crud->route;
+                },
+            ],
+        ]);
+
         CRUD::setEditView('crud::custom.ieraChecklist.create');
     }
 

@@ -6,6 +6,7 @@ namespace App\Http\Controllers\Admin\IERACheclist;
 use App\Models\Employee;
 use App\Models\Project;
 use App\Models\Task;
+use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
 
 class Background
 {
@@ -34,15 +35,28 @@ class Background
             [
                 'name' => 'task_id',
                 'type' => 'select_from_array',
-                'options' => ['' => 'Select a task'] + Task::where('project_id', session('filtered_project_id'))
+                'options' => (CRUD::getCurrentOperation() !== 'create') ?
+                    Task::leftJoin('iera_checklists', 'tasks.id', '=', 'iera_checklists.task_id')
+                    ->where('iera_checklists.id', CRUD::getCurrentEntryId())
+                    ->pluck('tasks.name', 'tasks.id')
+                    ->toArray()
+                    :
+                    ['' => 'Select a task'] + Task::where('project_id', session('filtered_project_id'))
                     ->pluck('name', 'id')
                     ->toArray(),
                 'wrapper' => ['class' => 'col-5'],
             ],
             [
                 'name' => 'employee_id',
+                'label' => 'employee_id',
                 'type' => 'select_from_array',
-                'options' => ['' => 'Select an employee'] + Employee::where('project_id', session('filtered_project_id'))
+                'options' => (CRUD::getCurrentOperation() !== 'create') ?
+                    Employee::leftJoin('iera_checklists', 'employees.id', '=', 'iera_checklists.employee_id')
+                    ->where('iera_checklists.id', CRUD::getCurrentEntryId())
+                    ->pluck('employees.name', 'employees.id')
+                    ->toArray()
+                    :
+                    ['' => 'Select an employee'] + Employee::where('project_id', session('filtered_project_id'))
                     ->pluck('name', 'id')
                     ->toArray(),
                 'attributes' => [
